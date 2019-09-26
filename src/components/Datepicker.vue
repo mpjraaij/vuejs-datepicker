@@ -51,7 +51,22 @@
     </div>
   </div> -->
 
-  <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
+  <div class="daterangepicker show-ranges openscenter show-calendar">
+    <div class="header">
+      <div class="header-section">
+        <strong>From</strong>
+        <span>Flexible</span>
+      </div>
+      <div class="header-section">
+        <strong>To</strong>
+        <span>Flexible</span>
+      </div>
+    </div>
+    <div class="drp-calendar">
+      <!-- Here comes the Day Input -->
+
+      <a href="#" class="btn">Next Step</a>
+    </div>
     <!-- <date-input
       :selectedDate="selectedDate"
       :resetTypedDate="resetTypedDate"
