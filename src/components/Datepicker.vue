@@ -52,7 +52,7 @@
   </div> -->
 
   <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
-    <date-input
+    <!-- <date-input
       :selectedDate="selectedDate"
       :resetTypedDate="resetTypedDate"
       :format="format"
@@ -79,7 +79,7 @@
       @typedDate="setTypedDate"
       @clearDate="clearDate">
       <slot name="afterDateInput" slot="afterDateInput"></slot>
-    </date-input>
+    </date-input> -->
 
 
     <!-- Day View -->
@@ -108,7 +108,7 @@
     </picker-day>
 
     <!-- Month View -->
-    <picker-month
+    <!-- <picker-month
       v-if="allowedToShowView('month')"
       :pageDate="pageDate"
       :selectedDate="selectedDate"
@@ -124,10 +124,10 @@
       @showYearCalendar="showYearCalendar"
       @changedYear="setPageDate">
       <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
-    </picker-month>
+    </picker-month> -->
 
     <!-- Year View -->
-    <picker-year
+    <!-- <picker-year
       v-if="allowedToShowView('year')"
       :pageDate="pageDate"
       :selectedDate="selectedDate"
@@ -142,7 +142,7 @@
       @selectYear="selectYear"
       @changedDecade="setPageDate">
       <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
-    </picker-year>
+    </picker-year> -->
   </div>
 </template>
 <script>
