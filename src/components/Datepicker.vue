@@ -51,7 +51,7 @@
     </div>
   </div> -->
 
-  <div class="daterangepicker show-ranges openscenter show-calendar">
+  <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
     <date-input
       :selectedDate="selectedDate"
       :resetTypedDate="resetTypedDate"
@@ -81,6 +81,8 @@
       <slot name="afterDateInput" slot="afterDateInput"></slot>
     </date-input>
 
+
+    <!-- Day View -->
     <picker-day
       v-if="allowedToShowView('day')"
       :pageDate="pageDate"
@@ -104,6 +106,43 @@
       @selectedDisabled="selectDisabledDate">
       <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
     </picker-day>
+
+    <!-- Month View -->
+    <picker-month
+      v-if="allowedToShowView('month')"
+      :pageDate="pageDate"
+      :selectedDate="selectedDate"
+      :showMonthView="showMonthView"
+      :allowedToShowView="allowedToShowView"
+      :disabledDates="disabledDates"
+      :calendarClass="calendarClass"
+      :calendarStyle="calendarStyle"
+      :translation="translation"
+      :isRtl="isRtl"
+      :use-utc="useUtc"
+      @selectMonth="selectMonth"
+      @showYearCalendar="showYearCalendar"
+      @changedYear="setPageDate">
+      <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
+    </picker-month>
+
+    <!-- Year View -->
+    <picker-year
+      v-if="allowedToShowView('year')"
+      :pageDate="pageDate"
+      :selectedDate="selectedDate"
+      :showYearView="showYearView"
+      :allowedToShowView="allowedToShowView"
+      :disabledDates="disabledDates"
+      :calendarClass="calendarClass"
+      :calendarStyle="calendarStyle"
+      :translation="translation"
+      :isRtl="isRtl"
+      :use-utc="useUtc"
+      @selectYear="selectYear"
+      @changedDecade="setPageDate">
+      <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
+    </picker-year>
   </div>
 </template>
 <script>
