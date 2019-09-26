@@ -23,6 +23,17 @@
 							<th>S</th>
 						</tr>
 					</thead>
+          <tbody>
+            <tr>
+							<td class="weekend off in-range available"><span>29</span></td>
+							<td class="off in-range available"><span>30</span></td>
+							<td class="off active end-date available"><span>31</span></td>
+							<td class="available"><span>1</span></td>
+							<td class="available"><span>2</span></td>
+							<td class="available"><span>3</span></td>
+							<td class="weekend available"><span>4</span></td>
+						</tr>
+          </tbody>
         </table>
       </div>
       <a href="#" class="btn">Next Step</a>
