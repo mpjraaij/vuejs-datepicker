@@ -1,5 +1,8 @@
 <template>
   <div class="daterangepicker show-ranges openscenter show-calendar">
+    <div class="widget-instaroom__form-field-header">
+      From
+    </div>
     <div class="drp-calendar">
       <div class="calendar-table">
         <table class="table-condensed">
