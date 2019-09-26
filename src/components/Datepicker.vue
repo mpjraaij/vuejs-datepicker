@@ -80,6 +80,30 @@
       @clearDate="clearDate">
       <slot name="afterDateInput" slot="afterDateInput"></slot>
     </date-input>
+
+    <picker-day
+      v-if="allowedToShowView('day')"
+      :pageDate="pageDate"
+      :selectedDate="selectedDate"
+      :showDayView="showDayView"
+      :fullMonthName="fullMonthName"
+      :allowedToShowView="allowedToShowView"
+      :disabledDates="disabledDates"
+      :highlighted="highlighted"
+      :calendarClass="calendarClass"
+      :calendarStyle="calendarStyle"
+      :translation="translation"
+      :pageTimestamp="pageTimestamp"
+      :isRtl="isRtl"
+      :mondayFirst="mondayFirst"
+      :dayCellContent="dayCellContent"
+      :use-utc="useUtc"
+      @changedMonth="handleChangedMonthFromDayPicker"
+      @selectDate="selectDate"
+      @showMonthCalendar="showMonthCalendar"
+      @selectedDisabled="selectDisabledDate">
+      <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
+    </picker-day>
   </div>
 </template>
 <script>
