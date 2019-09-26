@@ -1,4 +1,5 @@
 <template>
+  <!-- https://github.com/charliekassel/vuejs-datepicker/blob/master/src/components/Datepicker.vue -->
   <div class="daterangepicker show-ranges openscenter show-calendar">
     <div class="header">
       <div class="header-section">
