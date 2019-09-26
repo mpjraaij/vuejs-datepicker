@@ -1,6 +1,6 @@
 <template>
   <!-- https://github.com/charliekassel/vuejs-datepicker/blob/master/src/components/Datepicker.vue -->
-  <div class="daterangepicker show-ranges openscenter show-calendar">
+  <!-- <div class="daterangepicker show-ranges openscenter show-calendar">
     <div class="header">
       <div class="header-section">
         <strong>From</strong>
@@ -49,6 +49,37 @@
       </div>
       <a href="#" class="btn">Next Step</a>
     </div>
+  </div> -->
+
+  <div class="daterangepicker show-ranges openscenter show-calendar">
+    <date-input
+      :selectedDate="selectedDate"
+      :resetTypedDate="resetTypedDate"
+      :format="format"
+      :translation="translation"
+      :inline="inline"
+      :id="id"
+      :name="name"
+      :refName="refName"
+      :openDate="openDate"
+      :placeholder="placeholder"
+      :inputClass="inputClass"
+      :typeable="typeable"
+      :clearButton="clearButton"
+      :clearButtonIcon="clearButtonIcon"
+      :calendarButton="calendarButton"
+      :calendarButtonIcon="calendarButtonIcon"
+      :calendarButtonIconContent="calendarButtonIconContent"
+      :disabled="disabled"
+      :required="required"
+      :bootstrapStyling="bootstrapStyling"
+      :use-utc="useUtc"
+      @showCalendar="showCalendar"
+      @closeCalendar="close"
+      @typedDate="setTypedDate"
+      @clearDate="clearDate">
+      <slot name="afterDateInput" slot="afterDateInput"></slot>
+    </date-input>
   </div>
 </template>
 <script>
