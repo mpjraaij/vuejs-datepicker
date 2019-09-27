@@ -25,6 +25,14 @@
 				</tr>
         <tbody>
           <tr>
+            <td colspan="7">
+              <template v-if="blankDays > 0">
+                <span>{{ getCount() }} b</span>
+              </template>
+              <span>{{ getCount() }} a</span>
+            </td>
+          </tr>
+          <!-- <tr>
             <td 
               class="days"
               colspan="7">
@@ -38,9 +46,10 @@
                   v-for="day in days"
                   :key="day.timestamp"
                   :class="dayClasses(day)"
+                  v-html="dayCellContent(day)"
                   @click="selectDate(day)">a</span>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </thead>
     </table>
@@ -84,24 +93,16 @@ export default {
     translation: Object,
     isRtl: Boolean,
     mondayFirst: Boolean,
-    useUtc: Boolean,
-    count: 0
+    useUtc: Boolean
   },
   data () {
     const constructedDateUtils = makeDateUtils(this.useUtc)
     return {
-      utils: constructedDateUtils
+      utils: constructedDateUtils,
+      count: 0
     }
   },
   computed: {
-    dayCount () {
-      if (this.count === 7) {
-        this.count = 0
-      }
-      this.count++
-      return this.count
-    },
-
     /**
      * Returns an array of day names
      * @return {String[]}
@@ -201,6 +202,12 @@ export default {
     }
   },
   methods: {
+    getCount () {
+      if (this.count === 7) this.count = 0
+      this.count += 1
+      return this.count
+    },
+
     selectDate (date) {
       if (date.isDisabled) {
         this.$emit('selectedDisabled', date)

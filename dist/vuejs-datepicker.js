@@ -748,25 +748,16 @@
       translation: Object,
       isRtl: Boolean,
       mondayFirst: Boolean,
-      useUtc: Boolean,
-      count: 0
+      useUtc: Boolean
     },
     data: function data() {
       var constructedDateUtils = makeDateUtils(this.useUtc);
       return {
-        utils: constructedDateUtils
+        utils: constructedDateUtils,
+        count: 0
       };
     },
     computed: {
-      dayCount: function dayCount() {
-        if (this.count === 7) {
-          this.count = 0;
-        }
-
-        this.count++;
-        return this.count;
-      },
-
       /**
        * Returns an array of day names
        * @return {String[]}
@@ -870,6 +861,11 @@
       }
     },
     methods: {
+      getCount: function getCount() {
+        if (this.count === 7) this.count = 0;
+        this.count += 1;
+        return this.count;
+      },
       selectDate: function selectDate(date) {
         if (date.isDisabled) {
           this.$emit('selectedDisabled', date);
@@ -1186,33 +1182,13 @@
               _c("tr", [
                 _c(
                   "td",
-                  { staticClass: "days", attrs: { colspan: "7" } },
+                  { attrs: { colspan: "7" } },
                   [
                     _vm.blankDays > 0
-                      ? _vm._l(_vm.blankDays, function(d) {
-                          return _c("span", {
-                            key: d.timestamp,
-                            staticClass: "cell day blank"
-                          })
-                        })
+                      ? [_c("span", [_vm._v(_vm._s(_vm.getCount()) + " b")])]
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm._l(_vm.days, function(day) {
-                      return _c(
-                        "span",
-                        {
-                          key: day.timestamp,
-                          staticClass: "cell day",
-                          class: _vm.dayClasses(day),
-                          on: {
-                            click: function($event) {
-                              return _vm.selectDate(day)
-                            }
-                          }
-                        },
-                        [_vm._v("a")]
-                      )
-                    })
+                    _c("span", [_vm._v(_vm._s(_vm.getCount()) + " a")])
                   ],
                   2
                 )
