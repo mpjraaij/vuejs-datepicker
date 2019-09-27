@@ -1181,10 +1181,16 @@ var __vue_render__$1 = function() {
                 { attrs: { colspan: "7" } },
                 [
                   _vm.blankDays > 0
-                    ? [_c("span", [_vm._v(_vm._s(_vm.getCount()) + " b")])]
+                    ? _vm._l(_vm.blankDays, function(d) {
+                        return _c("span", [
+                          _vm._v(_vm._s(_vm.getCount()) + " b")
+                        ])
+                      })
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.getCount()) + " a")])
+                  _vm._l(_vm.days, function(day) {
+                    return _c("span", [_vm._v(_vm._s(_vm.getCount()) + " a")])
+                  })
                 ],
                 2
               )

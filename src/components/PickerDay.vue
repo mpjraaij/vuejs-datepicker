@@ -27,9 +27,17 @@
           <tr>
             <td colspan="7">
               <template v-if="blankDays > 0">
-                <span>{{ getCount() }} b</span>
+                <span 
+                  v-for="d in blankDays"
+                  :key="d.timestamp">
+                  {{ getCount() }} b
+                </span>
               </template>
-              <span>{{ getCount() }} a</span>
+              <span 
+                v-for="day in days"
+                :key="day.timestamp">
+                {{ getCount() }} a
+              </span>
             </td>
           </tr>
           <!-- <tr>
