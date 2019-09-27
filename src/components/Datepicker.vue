@@ -134,7 +134,7 @@
         @showYearCalendar="showYearCalendar"
         @changedYear="setPageDate">
         <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
-      </picker-month> -->
+      </picker-month>
 
       <!-- Year View -->
       <picker-year
