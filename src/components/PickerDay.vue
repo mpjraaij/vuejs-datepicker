@@ -25,11 +25,18 @@
 				</tr>
         <tbody>
           <template
-            v-for="d in blankDays"
+            v-for="(d, key) in blankDays"
             v-if="blankDays > 0">
-            <span>
-              b
-            </span>
+            <template v-if="key === 0">
+              <span>
+                B
+              </span>
+            </template>
+            <template v-else>
+              <span>
+                b
+              </span>
+            </template>
           </template>
           <!-- <template v-if="count === 1">
             <span 
