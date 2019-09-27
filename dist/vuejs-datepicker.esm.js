@@ -845,9 +845,32 @@ var script$1 = {
       return days;
     },
     comingDays: function comingDays() {
+      var d = this.pageDate;
+      var days = [];
+      var dObj = this.useUtc ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1)) : new Date(d.getFullYear(), d.getMonth() + 1, 1, d.getHours(), d.getMinutes());
       var dayCount = this.blankDays.length + this.days.length;
-      var leftOver = 28 % dayCount;
-      return leftOver;
+      var leftOver = 35 % dayCount;
+      this.utils.setDate(dObj, this.utils.getDate(dObj));
+
+      for (var i = 0; i < leftOver; i++) {
+        days.push({
+          date: this.utils.getDate(dObj),
+          timestamp: dObj.getTime(),
+          isNextMonth: true,
+          isSelected: this.isSelectedDate(dObj),
+          isDisabled: this.isDisabledDate(dObj),
+          isHighlighted: this.isHighlightedDate(dObj),
+          isHighlightStart: this.isHighlightStart(dObj),
+          isHighlightEnd: this.isHighlightEnd(dObj),
+          isToday: this.utils.compareDates(dObj, new Date()),
+          isWeekend: this.utils.getDay(dObj) === 0 || this.utils.getDay(dObj) === 6,
+          isSaturday: this.utils.getDay(dObj) === 6,
+          isSunday: this.utils.getDay(dObj) === 0
+        });
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + 1);
+      }
+
+      return days;
     },
 
     /**
