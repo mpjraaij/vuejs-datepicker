@@ -1102,7 +1102,114 @@
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
-    return _c("div")
+    return _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showDayView,
+            expression: "showDayView"
+          }
+        ],
+        class: [_vm.calendarClass, "vdp-datepicker__calendar"],
+        style: _vm.calendarStyle,
+        on: {
+          mousedown: function($event) {
+            $event.preventDefault();
+          }
+        }
+      },
+      [
+        _vm._t("beforeCalendarHeader"),
+        _vm._v(" "),
+        _c("header", [
+          _c(
+            "span",
+            {
+              staticClass: "prev",
+              class: { disabled: _vm.isLeftNavDisabled },
+              on: {
+                click: function($event) {
+                  _vm.isRtl ? _vm.nextMonth() : _vm.previousMonth();
+                }
+              }
+            },
+            [_vm._v("<")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "day__month_btn",
+              class: _vm.allowedToShowView("month") ? "up" : "",
+              on: { click: _vm.showMonthCalendar }
+            },
+            [
+              _vm._v(
+                _vm._s(_vm.isYmd ? _vm.currYearName : _vm.currMonthName) +
+                  " " +
+                  _vm._s(_vm.isYmd ? _vm.currMonthName : _vm.currYearName)
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "next",
+              class: { disabled: _vm.isRightNavDisabled },
+              on: {
+                click: function($event) {
+                  _vm.isRtl ? _vm.previousMonth() : _vm.nextMonth();
+                }
+              }
+            },
+            [_vm._v(">")]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { class: _vm.isRtl ? "flex-rtl" : "" },
+          [
+            _vm._l(_vm.daysOfWeek, function(d) {
+              return _c(
+                "span",
+                { key: d.timestamp, staticClass: "cell day-header" },
+                [_vm._v(_vm._s(d))]
+              )
+            }),
+            _vm._v(" "),
+            _vm.blankDays > 0
+              ? _vm._l(_vm.blankDays, function(d) {
+                  return _c("span", {
+                    key: d.timestamp,
+                    staticClass: "cell day blank"
+                  })
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.days, function(day) {
+              return _c("span", {
+                key: day.timestamp,
+                staticClass: "cell day",
+                class: _vm.dayClasses(day),
+                domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                on: {
+                  click: function($event) {
+                    return _vm.selectDate(day)
+                  }
+                }
+              })
+            })
+          ],
+          2
+        )
+      ],
+      2
+    )
   };
   var __vue_staticRenderFns__$1 = [];
   __vue_render__$1._withStripped = true;
@@ -2164,153 +2271,184 @@
     var _c = _vm._self._c || _h;
     return _c(
       "div",
-      {
-        staticClass: "vdp-datepicker",
-        class: [_vm.wrapperClass, _vm.isRtl ? "rtl" : ""]
-      },
+      { staticClass: "daterangepicker show-ranges openscenter show-calendar" },
       [
+        _vm._m(0),
+        _vm._v(" "),
         _c(
-          "date-input",
-          {
-            attrs: {
-              selectedDate: _vm.selectedDate,
-              resetTypedDate: _vm.resetTypedDate,
-              format: _vm.format,
-              translation: _vm.translation,
-              inline: _vm.inline,
-              id: _vm.id,
-              name: _vm.name,
-              refName: _vm.refName,
-              openDate: _vm.openDate,
-              placeholder: _vm.placeholder,
-              inputClass: _vm.inputClass,
-              typeable: _vm.typeable,
-              clearButton: _vm.clearButton,
-              clearButtonIcon: _vm.clearButtonIcon,
-              calendarButton: _vm.calendarButton,
-              calendarButtonIcon: _vm.calendarButtonIcon,
-              calendarButtonIconContent: _vm.calendarButtonIconContent,
-              disabled: _vm.disabled,
-              required: _vm.required,
-              bootstrapStyling: _vm.bootstrapStyling,
-              "use-utc": _vm.useUtc
-            },
-            on: {
-              showCalendar: _vm.showCalendar,
-              closeCalendar: _vm.close,
-              typedDate: _vm.setTypedDate,
-              clearDate: _vm.clearDate
-            }
-          },
-          [_vm._t("afterDateInput", null, { slot: "afterDateInput" })],
-          2
-        ),
-        _vm._v(" "),
-        _vm.allowedToShowView("day")
-          ? _c(
-              "picker-day",
+          "div",
+          { staticClass: "drp-calendar" },
+          [
+            _c(
+              "date-input",
               {
                 attrs: {
-                  pageDate: _vm.pageDate,
                   selectedDate: _vm.selectedDate,
-                  showDayView: _vm.showDayView,
-                  fullMonthName: _vm.fullMonthName,
-                  allowedToShowView: _vm.allowedToShowView,
-                  disabledDates: _vm.disabledDates,
-                  highlighted: _vm.highlighted,
-                  calendarClass: _vm.calendarClass,
-                  calendarStyle: _vm.calendarStyle,
+                  resetTypedDate: _vm.resetTypedDate,
+                  format: _vm.format,
                   translation: _vm.translation,
-                  pageTimestamp: _vm.pageTimestamp,
-                  isRtl: _vm.isRtl,
-                  mondayFirst: _vm.mondayFirst,
-                  dayCellContent: _vm.dayCellContent,
+                  inline: _vm.inline,
+                  id: _vm.id,
+                  name: _vm.name,
+                  refName: _vm.refName,
+                  openDate: _vm.openDate,
+                  placeholder: _vm.placeholder,
+                  inputClass: _vm.inputClass,
+                  typeable: _vm.typeable,
+                  clearButton: _vm.clearButton,
+                  clearButtonIcon: _vm.clearButtonIcon,
+                  calendarButton: _vm.calendarButton,
+                  calendarButtonIcon: _vm.calendarButtonIcon,
+                  calendarButtonIconContent: _vm.calendarButtonIconContent,
+                  disabled: _vm.disabled,
+                  required: _vm.required,
+                  bootstrapStyling: _vm.bootstrapStyling,
                   "use-utc": _vm.useUtc
                 },
                 on: {
-                  changedMonth: _vm.handleChangedMonthFromDayPicker,
-                  selectDate: _vm.selectDate,
-                  showMonthCalendar: _vm.showMonthCalendar,
-                  selectedDisabled: _vm.selectDisabledDate
+                  showCalendar: _vm.showCalendar,
+                  closeCalendar: _vm.close,
+                  typedDate: _vm.setTypedDate,
+                  clearDate: _vm.clearDate
                 }
               },
-              [
-                _vm._t("beforeCalendarHeader", null, {
-                  slot: "beforeCalendarHeader"
-                })
-              ],
+              [_vm._t("afterDateInput", null, { slot: "afterDateInput" })],
               2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.allowedToShowView("month")
-          ? _c(
-              "picker-month",
-              {
-                attrs: {
-                  pageDate: _vm.pageDate,
-                  selectedDate: _vm.selectedDate,
-                  showMonthView: _vm.showMonthView,
-                  allowedToShowView: _vm.allowedToShowView,
-                  disabledDates: _vm.disabledDates,
-                  calendarClass: _vm.calendarClass,
-                  calendarStyle: _vm.calendarStyle,
-                  translation: _vm.translation,
-                  isRtl: _vm.isRtl,
-                  "use-utc": _vm.useUtc
-                },
-                on: {
-                  selectMonth: _vm.selectMonth,
-                  showYearCalendar: _vm.showYearCalendar,
-                  changedYear: _vm.setPageDate
-                }
-              },
-              [
-                _vm._t("beforeCalendarHeader", null, {
-                  slot: "beforeCalendarHeader"
-                })
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.allowedToShowView("year")
-          ? _c(
-              "picker-year",
-              {
-                attrs: {
-                  pageDate: _vm.pageDate,
-                  selectedDate: _vm.selectedDate,
-                  showYearView: _vm.showYearView,
-                  allowedToShowView: _vm.allowedToShowView,
-                  disabledDates: _vm.disabledDates,
-                  calendarClass: _vm.calendarClass,
-                  calendarStyle: _vm.calendarStyle,
-                  translation: _vm.translation,
-                  isRtl: _vm.isRtl,
-                  "use-utc": _vm.useUtc
-                },
-                on: { selectYear: _vm.selectYear, changedDecade: _vm.setPageDate }
-              },
-              [
-                _vm._t("beforeCalendarHeader", null, {
-                  slot: "beforeCalendarHeader"
-                })
-              ],
-              2
-            )
-          : _vm._e()
-      ],
-      1
+            ),
+            _vm._v(" "),
+            _vm.allowedToShowView("day")
+              ? _c(
+                  "picker-day",
+                  {
+                    attrs: {
+                      pageDate: _vm.pageDate,
+                      selectedDate: _vm.selectedDate,
+                      showDayView: _vm.showDayView,
+                      fullMonthName: _vm.fullMonthName,
+                      allowedToShowView: _vm.allowedToShowView,
+                      disabledDates: _vm.disabledDates,
+                      highlighted: _vm.highlighted,
+                      calendarClass: _vm.calendarClass,
+                      calendarStyle: _vm.calendarStyle,
+                      translation: _vm.translation,
+                      pageTimestamp: _vm.pageTimestamp,
+                      isRtl: _vm.isRtl,
+                      mondayFirst: _vm.mondayFirst,
+                      dayCellContent: _vm.dayCellContent,
+                      "use-utc": _vm.useUtc
+                    },
+                    on: {
+                      changedMonth: _vm.handleChangedMonthFromDayPicker,
+                      selectDate: _vm.selectDate,
+                      showMonthCalendar: _vm.showMonthCalendar,
+                      selectedDisabled: _vm.selectDisabledDate
+                    }
+                  },
+                  [
+                    _vm._t("beforeCalendarHeader", null, {
+                      slot: "beforeCalendarHeader"
+                    })
+                  ],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.allowedToShowView("month")
+              ? _c(
+                  "picker-month",
+                  {
+                    attrs: {
+                      pageDate: _vm.pageDate,
+                      selectedDate: _vm.selectedDate,
+                      showMonthView: _vm.showMonthView,
+                      allowedToShowView: _vm.allowedToShowView,
+                      disabledDates: _vm.disabledDates,
+                      calendarClass: _vm.calendarClass,
+                      calendarStyle: _vm.calendarStyle,
+                      translation: _vm.translation,
+                      isRtl: _vm.isRtl,
+                      "use-utc": _vm.useUtc
+                    },
+                    on: {
+                      selectMonth: _vm.selectMonth,
+                      showYearCalendar: _vm.showYearCalendar,
+                      changedYear: _vm.setPageDate
+                    }
+                  },
+                  [
+                    _vm._t("beforeCalendarHeader", null, {
+                      slot: "beforeCalendarHeader"
+                    })
+                  ],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.allowedToShowView("year")
+              ? _c(
+                  "picker-year",
+                  {
+                    attrs: {
+                      pageDate: _vm.pageDate,
+                      selectedDate: _vm.selectedDate,
+                      showYearView: _vm.showYearView,
+                      allowedToShowView: _vm.allowedToShowView,
+                      disabledDates: _vm.disabledDates,
+                      calendarClass: _vm.calendarClass,
+                      calendarStyle: _vm.calendarStyle,
+                      translation: _vm.translation,
+                      isRtl: _vm.isRtl,
+                      "use-utc": _vm.useUtc
+                    },
+                    on: {
+                      selectYear: _vm.selectYear,
+                      changedDecade: _vm.setPageDate
+                    }
+                  },
+                  [
+                    _vm._t("beforeCalendarHeader", null, {
+                      slot: "beforeCalendarHeader"
+                    })
+                  ],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("a", { staticClass: "btn", attrs: { href: "#" } }, [
+              _vm._v("Next Step")
+            ])
+          ],
+          1
+        )
+      ]
     )
   };
-  var __vue_staticRenderFns__$4 = [];
+  var __vue_staticRenderFns__$4 = [
+    function() {
+      var _vm = this;
+      var _h = _vm.$createElement;
+      var _c = _vm._self._c || _h;
+      return _c("div", { staticClass: "header" }, [
+        _c("div", { staticClass: "header-section" }, [
+          _c("strong", [_vm._v("From")]),
+          _vm._v(" "),
+          _c("span", [_vm._v("Flexible")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "header-section" }, [
+          _c("strong", [_vm._v("To")]),
+          _vm._v(" "),
+          _c("span", [_vm._v("Flexible")])
+        ])
+      ])
+    }
+  ];
   __vue_render__$4._withStripped = true;
 
     /* style */
     const __vue_inject_styles__$4 = function (inject) {
       if (!inject) return
-      inject("data-v-23a5e132_0", { source: ".daterangepicker {\n  color: inherit;\n  margin: 0 11px;\n  padding: 0;\n  border-radius: 5px;\n  border: 1px solid #e9ebee;\n  box-shadow: 0 1px 3px 0 rgba(126,131,143,0.06);\n  margin-bottom: 0 !important;\n  font-size: 13px;\n}\n.daterangepicker:before {\n  top: -7px;\n  border-right: 7px solid transparent;\n  border-left: 7px solid transparent;\n  border-bottom: 7px solid #ccc;\n}\n.daterangepicker:after {\n  top: -6px;\n  border-right: 6px solid transparent;\n  border-bottom: 6px solid #fff;\n  border-left: 6px solid transparent;\n}\n.daterangepicker.opensleft:before {\n  right: 9px;\n}\n.daterangepicker.opensleft:after {\n  right: 10px;\n}\n.daterangepicker.openscenter:before {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.openscenter:after {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.opensright:before {\n  left: 9px;\n}\n.daterangepicker.opensright:after {\n  left: 10px;\n}\n.daterangepicker.drop-up {\n  margin-top: -7px;\n}\n.daterangepicker.drop-up:before {\n  top: initial;\n  bottom: -7px;\n  border-bottom: initial;\n  border-top: 7px solid #ccc;\n}\n.daterangepicker.drop-up:after {\n  top: initial;\n  bottom: -6px;\n  border-bottom: initial;\n  border-top: 6px solid #fff;\n}\n.daterangepicker.single .daterangepicker .ranges,\n.daterangepicker.single .drp-calendar {\n  float: none;\n}\n.daterangepicker.single .drp-selected {\n  display: none;\n}\n.daterangepicker.show-calendar .drp-calendar {\n  display: block;\n}\n.daterangepicker.show-calendar .drp-buttons {\n  display: block;\n}\n.daterangepicker.auto-apply .drp-buttons {\n  display: none;\n}\n.daterangepicker .drp-calendar.left {\n  padding: 8px 11px 25px 20px;\n}\n.daterangepicker .drp-calendar.right {\n  padding: 8px 10px 25px 12px;\n  float: left;\n}\n.daterangepicker .drp-calendar.single .calendar-table {\n  border: none;\n}\n.calendar-table {\n  margin-bottom: 22px;\n  padding: 0 12px;\n}\n.drp-calendar {\n  text-align: right;\n}\n.drp-calendar .btn {\n  background-image: linear-gradient(-180deg, #fdfefe 0%, #fbfcfc 100%);\n  border: 1px solid #d9dbdf;\n  box-shadow: 0 1px 2px 0 rgba(126,131,143,0.1);\n  display: inline-block;\n  padding: 10px 12px;\n  border-radius: 5px;\n  font-family: 'Open Sans';\n  font-size: 13px;\n  color: #73767d;\n  margin: 0 24px 21px 0;\n}\n.drp-calendar .btn:hover {\n  background: #82a2ff;\n  color: #fff;\n  border-color: #82a2ff;\n}\n.daterangepicker .calendar-table .next span,\n.daterangepicker .calendar-table .prev span {\n  color: #fff;\n  border: solid #b4b7bf;\n  border-width: 0 1px 1px 0;\n  border-radius: 0;\n  display: inline-block;\n  padding: 4px;\n}\n.daterangepicker .calendar-table .next span {\n  transform: rotate(-45deg);\n  -webkit-transform: rotate(-45deg);\n}\n.daterangepicker .calendar-table .prev span {\n  transform: rotate(135deg);\n  -webkit-transform: rotate(135deg);\n}\n.daterangepicker .calendar-table th,\n.daterangepicker .calendar-table td {\n  vertical-align: middle;\n  width: 17px;\n  height: 35px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  color: #b4b7bf;\n  text-align: center;\n}\n.available.active.start-date.end-date {\n  vertical-align: middle;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  max-width: 0;\n  width: 0;\n  height: auto;\n  background: transparent;\n}\n.available.active.start-date.end-date:hover {\n  background: transparent;\n}\n.available.active.start-date.end-date span {\n  width: 35px;\n  height: 35px;\n  line-height: 35px;\n  border-radius: 50px;\n  background: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker .calendar-table tbody td,\n.daterangepicker .calendar-table thead td {\n  color: #575a61;\n  text-align: center;\n}\n.daterangepicker .calendar-table tbody td.off,\n.daterangepicker .calendar-table thead td.off {\n  color: #d9dbdf;\n}\n.daterangepicker .calendar-table tbody td.in-range,\n.daterangepicker .calendar-table thead td.in-range,\n.daterangepicker .calendar-table tbody td.start-date,\n.daterangepicker .calendar-table thead td.start-date,\n.daterangepicker .calendar-table tbody td.end-date,\n.daterangepicker .calendar-table thead td.end-date {\n  color: #fff;\n}\n.daterangepicker .calendar-table table {\n  width: 100%;\n  margin: 0;\n  border-spacing: 0;\n  border-collapse: collapse;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) {\n  border-color: transparent;\n  color: #fff;\n  max-width: 0;\n  height: 34px;\n  line-height: 34px;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) span {\n  width: 34px;\n  height: 34px;\n  line-height: 34px;\n  border-radius: 50px;\n  background-color: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker th.available:hover {\n  opacity: 0.8;\n}\n.daterangepicker td.week,\n.daterangepicker th.week {\n  font-size: 80%;\n  color: #ccc;\n}\n.daterangepicker td.off,\n.daterangepicker td.off.in-range,\n.daterangepicker td.off.start-date,\n.daterangepicker td.off.end-date {\n  border-color: transparent;\n  background: rgba(245,246,246,0.6);\n  font-size: 13px;\n  color: #d9dbdf !important;\n}\n.daterangepicker td.off:hover,\n.daterangepicker td.off.in-range:hover,\n.daterangepicker td.off.start-date:hover,\n.daterangepicker td.off.end-date:hover {\n  background: rgba(245,246,246,0.6);\n}\n.daterangepicker td.in-range {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n  border-radius: 0;\n}\n.daterangepicker td.in-range:not(.off):last-child {\n  border-radius: 0 2px 2px 0;\n}\n.daterangepicker td.in-range:not(.off):first-child {\n  border-radius: 2px 0 0 2px;\n}\n.daterangepicker td.start-date {\n  border-radius: 20px 0 0 20px;\n}\n.daterangepicker td.end-date {\n  border-radius: 0 20px 20px 0;\n}\n.daterangepicker td.start-date.end-date {\n  border-radius: 4px;\n}\n.daterangepicker td.active,\n.daterangepicker td.active:hover {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n}\n.daterangepicker th.month {\n  width: auto;\n  font-family: 'Open Sans', sans-serif;\n  padding: 10px 0;\n  font-weight: 600;\n  font-size: 13px;\n  color: #575a61;\n  letter-spacing: 0;\n  text-align: center;\n}\n.daterangepicker th.month,\n.daterangepicker th.prev,\n.daterangepicker th.next {\n  line-height: 1.5;\n  padding: 16px 0 9px;\n}\n.daterangepicker th.prev:hover,\n.daterangepicker th.next:hover {\n  opacity: 0.75;\n}\n.daterangepicker td.disabled,\n.daterangepicker option.disabled {\n  color: #999;\n  cursor: not-allowed;\n  text-decoration: line-through;\n}\n.daterangepicker select.monthselect,\n.daterangepicker select.yearselect {\n  font-size: 12px;\n  padding: 1px;\n  height: auto;\n  margin: 0;\n  cursor: default;\n}\n.daterangepicker select.monthselect {\n  margin-right: 2%;\n  width: 56%;\n}\n.daterangepicker select.yearselect {\n  width: 40%;\n}\n.daterangepicker select.hourselect,\n.daterangepicker select.minuteselect,\n.daterangepicker select.secondselect,\n.daterangepicker select.ampmselect {\n  width: 50px;\n  margin: 0 auto;\n  background: #eee;\n  border: 1px solid #eee;\n  padding: 2px;\n  outline: 0;\n  font-size: 12px;\n}\n.daterangepicker .calendar-time {\n  text-align: center;\n  margin: 4px auto 0 auto;\n  line-height: 30px;\n  position: relative;\n}\n.daterangepicker .calendar-time select.disabled {\n  color: #ccc;\n  cursor: not-allowed;\n}\n.daterangepicker .drp-buttons {\n  clear: both;\n  text-align: right;\n  padding: 8px;\n  border-top: 1px solid #ddd;\n  display: none;\n  line-height: 12px;\n  vertical-align: middle;\n}\n.daterangepicker .drp-selected {\n  display: inline-block;\n  font-size: 12px;\n  padding-right: 8px;\n}\n.daterangepicker .drp-buttons .btn {\n  margin-left: 8px;\n  font-size: 12px;\n  font-weight: bold;\n  padding: 4px 8px;\n}\n.daterangepicker.show-ranges .drp-calendar.left {\n  float: left;\n}\n.daterangepicker .ranges {\n  float: none;\n  text-align: left;\n  margin: 0;\n}\n.daterangepicker.show-calendar .ranges {\n  clear: both;\n  border-top: 1px solid #ced1d8;\n  background: #f7f8fa;\n  padding: 12px 12px 17px;\n}\n.daterangepicker .ranges ul {\n  list-style: none;\n  margin: 0 auto;\n  padding: 0;\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap;\n}\n.daterangepicker .ranges li {\n  padding: 10px 12px;\n  cursor: pointer;\n  width: 25%;\n  font-family: 'Open Sans', sans-serif;\n  font-weight: 600;\n  font-size: 14px;\n  color: #5a5c61;\n  text-align: center;\n}\n.daterangepicker .ranges li:hover {\n  background-color: #eee;\n}\n.daterangepicker .ranges li.active {\n  background-color: #08c;\n  color: #fff;\n}\n", map: {"version":3,"sources":["Datepicker.vue"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,cAAc;EACd,UAAU;EACV,kBAAkB;EAClB,yBAAyB;EACzB,8CAA8C;EAC9C,2BAA2B;EAC3B,eAAe;AACjB;AACA;EACE,SAAS;EACT,mCAAmC;EACnC,kCAAkC;EAClC,6BAA6B;AAC/B;AACA;EACE,SAAS;EACT,mCAAmC;EACnC,6BAA6B;EAC7B,kCAAkC;AACpC;AACA;EACE,UAAU;AACZ;AACA;EACE,WAAW;AACb;AACA;EACE,OAAO;EACP,QAAQ;EACR,QAAQ;EACR,iBAAiB;EACjB,kBAAkB;AACpB;AACA;EACE,OAAO;EACP,QAAQ;EACR,QAAQ;EACR,iBAAiB;EACjB,kBAAkB;AACpB;AACA;EACE,SAAS;AACX;AACA;EACE,UAAU;AACZ;AACA;EACE,gBAAgB;AAClB;AACA;EACE,YAAY;EACZ,YAAY;EACZ,sBAAsB;EACtB,0BAA0B;AAC5B;AACA;EACE,YAAY;EACZ,YAAY;EACZ,sBAAsB;EACtB,0BAA0B;AAC5B;AACA;;EAEE,WAAW;AACb;AACA;EACE,aAAa;AACf;AACA;EACE,cAAc;AAChB;AACA;EACE,cAAc;AAChB;AACA;EACE,aAAa;AACf;AACA;EACE,2BAA2B;AAC7B;AACA;EACE,2BAA2B;EAC3B,WAAW;AACb;AACA;EACE,YAAY;AACd;AACA;EACE,mBAAmB;EACnB,eAAe;AACjB;AACA;EACE,iBAAiB;AACnB;AACA;EACE,oEAAoE;EACpE,yBAAyB;EACzB,6CAA6C;EAC7C,qBAAqB;EACrB,kBAAkB;EAClB,kBAAkB;EAClB,wBAAwB;EACxB,eAAe;EACf,cAAc;EACd,qBAAqB;AACvB;AACA;EACE,mBAAmB;EACnB,WAAW;EACX,qBAAqB;AACvB;AACA;;EAEE,WAAW;EACX,qBAAqB;EACrB,yBAAyB;EACzB,gBAAgB;EAChB,qBAAqB;EACrB,YAAY;AACd;AACA;EACE,yBAAyB;EACzB,iCAAiC;AACnC;AACA;EACE,yBAAyB;EACzB,iCAAiC;AACnC;AACA;;EAEE,sBAAsB;EACtB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,6BAA6B;EAC7B,mBAAmB;EACnB,eAAe;EACf,oCAAoC;EACpC,cAAc;EACd,kBAAkB;AACpB;AACA;EACE,sBAAsB;EACtB,6BAA6B;EAC7B,mBAAmB;EACnB,eAAe;EACf,oCAAoC;EACpC,YAAY;EACZ,QAAQ;EACR,YAAY;EACZ,uBAAuB;AACzB;AACA;EACE,uBAAuB;AACzB;AACA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,mBAAmB;EACnB,mBAAmB;EACnB,qBAAqB;AACvB;AACA;;EAEE,cAAc;EACd,kBAAkB;AACpB;AACA;;EAEE,cAAc;AAChB;AACA;;;;;;EAME,WAAW;AACb;AACA;EACE,WAAW;EACX,SAAS;EACT,iBAAiB;EACjB,yBAAyB;AAC3B;AACA;EACE,yBAAyB;EACzB,WAAW;EACX,YAAY;EACZ,YAAY;EACZ,iBAAiB;AACnB;AACA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,mBAAmB;EACnB,yBAAyB;EACzB,qBAAqB;AACvB;AACA;EACE,YAAY;AACd;AACA;;EAEE,cAAc;EACd,WAAW;AACb;AACA;;;;EAIE,yBAAyB;EACzB,iCAAiC;EACjC,eAAe;EACf,yBAAyB;AAC3B;AACA;;;;EAIE,iCAAiC;AACnC;AACA;EACE,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,gBAAgB;AAClB;AACA;EACE,0BAA0B;AAC5B;AACA;EACE,0BAA0B;AAC5B;AACA;EACE,4BAA4B;AAC9B;AACA;EACE,4BAA4B;AAC9B;AACA;EACE,kBAAkB;AACpB;AACA;;EAEE,yBAAyB;EACzB,WAAW;EACX,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,oCAAoC;EACpC,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,cAAc;EACd,iBAAiB;EACjB,kBAAkB;AACpB;AACA;;;EAGE,gBAAgB;EAChB,mBAAmB;AACrB;AACA;;EAEE,aAAa;AACf;AACA;;EAEE,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;AACA;;EAEE,eAAe;EACf,YAAY;EACZ,YAAY;EACZ,SAAS;EACT,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,UAAU;AACZ;AACA;EACE,UAAU;AACZ;AACA;;;;EAIE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,sBAAsB;EACtB,YAAY;EACZ,UAAU;EACV,eAAe;AACjB;AACA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,iBAAiB;EACjB,kBAAkB;AACpB;AACA;EACE,WAAW;EACX,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,iBAAiB;EACjB,YAAY;EACZ,0BAA0B;EAC1B,aAAa;EACb,iBAAiB;EACjB,sBAAsB;AACxB;AACA;EACE,qBAAqB;EACrB,eAAe;EACf,kBAAkB;AACpB;AACA;EACE,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,gBAAgB;AAClB;AACA;EACE,WAAW;AACb;AACA;EACE,WAAW;EACX,gBAAgB;EAChB,SAAS;AACX;AACA;EACE,WAAW;EACX,6BAA6B;EAC7B,mBAAmB;EACnB,uBAAuB;AACzB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,UAAU;EACV,WAAW;EACX,aAAa;EACb,eAAe;AACjB;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,UAAU;EACV,oCAAoC;EACpC,gBAAgB;EAChB,eAAe;EACf,cAAc;EACd,kBAAkB;AACpB;AACA;EACE,sBAAsB;AACxB;AACA;EACE,sBAAsB;EACtB,WAAW;AACb","file":"Datepicker.vue","sourcesContent":[".daterangepicker {\n  color: inherit;\n  margin: 0 11px;\n  padding: 0;\n  border-radius: 5px;\n  border: 1px solid #e9ebee;\n  box-shadow: 0 1px 3px 0 rgba(126,131,143,0.06);\n  margin-bottom: 0 !important;\n  font-size: 13px;\n}\n.daterangepicker:before {\n  top: -7px;\n  border-right: 7px solid transparent;\n  border-left: 7px solid transparent;\n  border-bottom: 7px solid #ccc;\n}\n.daterangepicker:after {\n  top: -6px;\n  border-right: 6px solid transparent;\n  border-bottom: 6px solid #fff;\n  border-left: 6px solid transparent;\n}\n.daterangepicker.opensleft:before {\n  right: 9px;\n}\n.daterangepicker.opensleft:after {\n  right: 10px;\n}\n.daterangepicker.openscenter:before {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.openscenter:after {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.opensright:before {\n  left: 9px;\n}\n.daterangepicker.opensright:after {\n  left: 10px;\n}\n.daterangepicker.drop-up {\n  margin-top: -7px;\n}\n.daterangepicker.drop-up:before {\n  top: initial;\n  bottom: -7px;\n  border-bottom: initial;\n  border-top: 7px solid #ccc;\n}\n.daterangepicker.drop-up:after {\n  top: initial;\n  bottom: -6px;\n  border-bottom: initial;\n  border-top: 6px solid #fff;\n}\n.daterangepicker.single .daterangepicker .ranges,\n.daterangepicker.single .drp-calendar {\n  float: none;\n}\n.daterangepicker.single .drp-selected {\n  display: none;\n}\n.daterangepicker.show-calendar .drp-calendar {\n  display: block;\n}\n.daterangepicker.show-calendar .drp-buttons {\n  display: block;\n}\n.daterangepicker.auto-apply .drp-buttons {\n  display: none;\n}\n.daterangepicker .drp-calendar.left {\n  padding: 8px 11px 25px 20px;\n}\n.daterangepicker .drp-calendar.right {\n  padding: 8px 10px 25px 12px;\n  float: left;\n}\n.daterangepicker .drp-calendar.single .calendar-table {\n  border: none;\n}\n.calendar-table {\n  margin-bottom: 22px;\n  padding: 0 12px;\n}\n.drp-calendar {\n  text-align: right;\n}\n.drp-calendar .btn {\n  background-image: linear-gradient(-180deg, #fdfefe 0%, #fbfcfc 100%);\n  border: 1px solid #d9dbdf;\n  box-shadow: 0 1px 2px 0 rgba(126,131,143,0.1);\n  display: inline-block;\n  padding: 10px 12px;\n  border-radius: 5px;\n  font-family: 'Open Sans';\n  font-size: 13px;\n  color: #73767d;\n  margin: 0 24px 21px 0;\n}\n.drp-calendar .btn:hover {\n  background: #82a2ff;\n  color: #fff;\n  border-color: #82a2ff;\n}\n.daterangepicker .calendar-table .next span,\n.daterangepicker .calendar-table .prev span {\n  color: #fff;\n  border: solid #b4b7bf;\n  border-width: 0 1px 1px 0;\n  border-radius: 0;\n  display: inline-block;\n  padding: 4px;\n}\n.daterangepicker .calendar-table .next span {\n  transform: rotate(-45deg);\n  -webkit-transform: rotate(-45deg);\n}\n.daterangepicker .calendar-table .prev span {\n  transform: rotate(135deg);\n  -webkit-transform: rotate(135deg);\n}\n.daterangepicker .calendar-table th,\n.daterangepicker .calendar-table td {\n  vertical-align: middle;\n  width: 17px;\n  height: 35px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  color: #b4b7bf;\n  text-align: center;\n}\n.available.active.start-date.end-date {\n  vertical-align: middle;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  max-width: 0;\n  width: 0;\n  height: auto;\n  background: transparent;\n}\n.available.active.start-date.end-date:hover {\n  background: transparent;\n}\n.available.active.start-date.end-date span {\n  width: 35px;\n  height: 35px;\n  line-height: 35px;\n  border-radius: 50px;\n  background: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker .calendar-table tbody td,\n.daterangepicker .calendar-table thead td {\n  color: #575a61;\n  text-align: center;\n}\n.daterangepicker .calendar-table tbody td.off,\n.daterangepicker .calendar-table thead td.off {\n  color: #d9dbdf;\n}\n.daterangepicker .calendar-table tbody td.in-range,\n.daterangepicker .calendar-table thead td.in-range,\n.daterangepicker .calendar-table tbody td.start-date,\n.daterangepicker .calendar-table thead td.start-date,\n.daterangepicker .calendar-table tbody td.end-date,\n.daterangepicker .calendar-table thead td.end-date {\n  color: #fff;\n}\n.daterangepicker .calendar-table table {\n  width: 100%;\n  margin: 0;\n  border-spacing: 0;\n  border-collapse: collapse;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) {\n  border-color: transparent;\n  color: #fff;\n  max-width: 0;\n  height: 34px;\n  line-height: 34px;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) span {\n  width: 34px;\n  height: 34px;\n  line-height: 34px;\n  border-radius: 50px;\n  background-color: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker th.available:hover {\n  opacity: 0.8;\n}\n.daterangepicker td.week,\n.daterangepicker th.week {\n  font-size: 80%;\n  color: #ccc;\n}\n.daterangepicker td.off,\n.daterangepicker td.off.in-range,\n.daterangepicker td.off.start-date,\n.daterangepicker td.off.end-date {\n  border-color: transparent;\n  background: rgba(245,246,246,0.6);\n  font-size: 13px;\n  color: #d9dbdf !important;\n}\n.daterangepicker td.off:hover,\n.daterangepicker td.off.in-range:hover,\n.daterangepicker td.off.start-date:hover,\n.daterangepicker td.off.end-date:hover {\n  background: rgba(245,246,246,0.6);\n}\n.daterangepicker td.in-range {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n  border-radius: 0;\n}\n.daterangepicker td.in-range:not(.off):last-child {\n  border-radius: 0 2px 2px 0;\n}\n.daterangepicker td.in-range:not(.off):first-child {\n  border-radius: 2px 0 0 2px;\n}\n.daterangepicker td.start-date {\n  border-radius: 20px 0 0 20px;\n}\n.daterangepicker td.end-date {\n  border-radius: 0 20px 20px 0;\n}\n.daterangepicker td.start-date.end-date {\n  border-radius: 4px;\n}\n.daterangepicker td.active,\n.daterangepicker td.active:hover {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n}\n.daterangepicker th.month {\n  width: auto;\n  font-family: 'Open Sans', sans-serif;\n  padding: 10px 0;\n  font-weight: 600;\n  font-size: 13px;\n  color: #575a61;\n  letter-spacing: 0;\n  text-align: center;\n}\n.daterangepicker th.month,\n.daterangepicker th.prev,\n.daterangepicker th.next {\n  line-height: 1.5;\n  padding: 16px 0 9px;\n}\n.daterangepicker th.prev:hover,\n.daterangepicker th.next:hover {\n  opacity: 0.75;\n}\n.daterangepicker td.disabled,\n.daterangepicker option.disabled {\n  color: #999;\n  cursor: not-allowed;\n  text-decoration: line-through;\n}\n.daterangepicker select.monthselect,\n.daterangepicker select.yearselect {\n  font-size: 12px;\n  padding: 1px;\n  height: auto;\n  margin: 0;\n  cursor: default;\n}\n.daterangepicker select.monthselect {\n  margin-right: 2%;\n  width: 56%;\n}\n.daterangepicker select.yearselect {\n  width: 40%;\n}\n.daterangepicker select.hourselect,\n.daterangepicker select.minuteselect,\n.daterangepicker select.secondselect,\n.daterangepicker select.ampmselect {\n  width: 50px;\n  margin: 0 auto;\n  background: #eee;\n  border: 1px solid #eee;\n  padding: 2px;\n  outline: 0;\n  font-size: 12px;\n}\n.daterangepicker .calendar-time {\n  text-align: center;\n  margin: 4px auto 0 auto;\n  line-height: 30px;\n  position: relative;\n}\n.daterangepicker .calendar-time select.disabled {\n  color: #ccc;\n  cursor: not-allowed;\n}\n.daterangepicker .drp-buttons {\n  clear: both;\n  text-align: right;\n  padding: 8px;\n  border-top: 1px solid #ddd;\n  display: none;\n  line-height: 12px;\n  vertical-align: middle;\n}\n.daterangepicker .drp-selected {\n  display: inline-block;\n  font-size: 12px;\n  padding-right: 8px;\n}\n.daterangepicker .drp-buttons .btn {\n  margin-left: 8px;\n  font-size: 12px;\n  font-weight: bold;\n  padding: 4px 8px;\n}\n.daterangepicker.show-ranges .drp-calendar.left {\n  float: left;\n}\n.daterangepicker .ranges {\n  float: none;\n  text-align: left;\n  margin: 0;\n}\n.daterangepicker.show-calendar .ranges {\n  clear: both;\n  border-top: 1px solid #ced1d8;\n  background: #f7f8fa;\n  padding: 12px 12px 17px;\n}\n.daterangepicker .ranges ul {\n  list-style: none;\n  margin: 0 auto;\n  padding: 0;\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap;\n}\n.daterangepicker .ranges li {\n  padding: 10px 12px;\n  cursor: pointer;\n  width: 25%;\n  font-family: 'Open Sans', sans-serif;\n  font-weight: 600;\n  font-size: 14px;\n  color: #5a5c61;\n  text-align: center;\n}\n.daterangepicker .ranges li:hover {\n  background-color: #eee;\n}\n.daterangepicker .ranges li.active {\n  background-color: #08c;\n  color: #fff;\n}\n"]}, media: undefined });
+      inject("data-v-73bcae27_0", { source: ".daterangepicker {\n  color: inherit;\n  margin: 0 11px;\n  padding: 0;\n  border-radius: 5px;\n  border: 1px solid #e9ebee;\n  box-shadow: 0 1px 3px 0 rgba(126,131,143,0.06);\n  margin-bottom: 0 !important;\n  font-size: 13px;\n}\n.daterangepicker:before {\n  top: -7px;\n  border-right: 7px solid transparent;\n  border-left: 7px solid transparent;\n  border-bottom: 7px solid #ccc;\n}\n.daterangepicker:after {\n  top: -6px;\n  border-right: 6px solid transparent;\n  border-bottom: 6px solid #fff;\n  border-left: 6px solid transparent;\n}\n.daterangepicker.opensleft:before {\n  right: 9px;\n}\n.daterangepicker.opensleft:after {\n  right: 10px;\n}\n.daterangepicker.openscenter:before {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.openscenter:after {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.opensright:before {\n  left: 9px;\n}\n.daterangepicker.opensright:after {\n  left: 10px;\n}\n.daterangepicker.drop-up {\n  margin-top: -7px;\n}\n.daterangepicker.drop-up:before {\n  top: initial;\n  bottom: -7px;\n  border-bottom: initial;\n  border-top: 7px solid #ccc;\n}\n.daterangepicker.drop-up:after {\n  top: initial;\n  bottom: -6px;\n  border-bottom: initial;\n  border-top: 6px solid #fff;\n}\n.daterangepicker.single .daterangepicker .ranges,\n.daterangepicker.single .drp-calendar {\n  float: none;\n}\n.daterangepicker.single .drp-selected {\n  display: none;\n}\n.daterangepicker.show-calendar .drp-calendar {\n  display: block;\n}\n.daterangepicker.show-calendar .drp-buttons {\n  display: block;\n}\n.daterangepicker.auto-apply .drp-buttons {\n  display: none;\n}\n.daterangepicker .drp-calendar.left {\n  padding: 8px 11px 25px 20px;\n}\n.daterangepicker .drp-calendar.right {\n  padding: 8px 10px 25px 12px;\n  float: left;\n}\n.daterangepicker .drp-calendar.single .calendar-table {\n  border: none;\n}\n.calendar-table {\n  margin-bottom: 22px;\n  padding: 0 12px;\n}\n.drp-calendar {\n  text-align: right;\n}\n.drp-calendar .btn {\n  background-image: linear-gradient(-180deg, #fdfefe 0%, #fbfcfc 100%);\n  border: 1px solid #d9dbdf;\n  box-shadow: 0 1px 2px 0 rgba(126,131,143,0.1);\n  display: inline-block;\n  padding: 10px 12px;\n  border-radius: 5px;\n  font-family: 'Open Sans';\n  font-size: 13px;\n  color: #73767d;\n  margin: 0 24px 21px 0;\n}\n.drp-calendar .btn:hover {\n  background: #82a2ff;\n  color: #fff;\n  border-color: #82a2ff;\n}\n.daterangepicker .calendar-table .next span,\n.daterangepicker .calendar-table .prev span {\n  color: #fff;\n  border: solid #b4b7bf;\n  border-width: 0 1px 1px 0;\n  border-radius: 0;\n  display: inline-block;\n  padding: 4px;\n}\n.daterangepicker .calendar-table .next span {\n  transform: rotate(-45deg);\n  -webkit-transform: rotate(-45deg);\n}\n.daterangepicker .calendar-table .prev span {\n  transform: rotate(135deg);\n  -webkit-transform: rotate(135deg);\n}\n.daterangepicker .calendar-table th,\n.daterangepicker .calendar-table td {\n  vertical-align: middle;\n  width: 17px;\n  height: 35px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  color: #b4b7bf;\n  text-align: center;\n}\n.available.active.start-date.end-date {\n  vertical-align: middle;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  max-width: 0;\n  width: 0;\n  height: auto;\n  background: transparent;\n}\n.available.active.start-date.end-date:hover {\n  background: transparent;\n}\n.available.active.start-date.end-date span {\n  width: 35px;\n  height: 35px;\n  line-height: 35px;\n  border-radius: 50px;\n  background: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker .calendar-table tbody td,\n.daterangepicker .calendar-table thead td {\n  color: #575a61;\n  text-align: center;\n}\n.daterangepicker .calendar-table tbody td.off,\n.daterangepicker .calendar-table thead td.off {\n  color: #d9dbdf;\n}\n.daterangepicker .calendar-table tbody td.in-range,\n.daterangepicker .calendar-table thead td.in-range,\n.daterangepicker .calendar-table tbody td.start-date,\n.daterangepicker .calendar-table thead td.start-date,\n.daterangepicker .calendar-table tbody td.end-date,\n.daterangepicker .calendar-table thead td.end-date {\n  color: #fff;\n}\n.daterangepicker .calendar-table table {\n  width: 100%;\n  margin: 0;\n  border-spacing: 0;\n  border-collapse: collapse;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) {\n  border-color: transparent;\n  color: #fff;\n  max-width: 0;\n  height: 34px;\n  line-height: 34px;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) span {\n  width: 34px;\n  height: 34px;\n  line-height: 34px;\n  border-radius: 50px;\n  background-color: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker th.available:hover {\n  opacity: 0.8;\n}\n.daterangepicker td.week,\n.daterangepicker th.week {\n  font-size: 80%;\n  color: #ccc;\n}\n.daterangepicker td.off,\n.daterangepicker td.off.in-range,\n.daterangepicker td.off.start-date,\n.daterangepicker td.off.end-date {\n  border-color: transparent;\n  background: rgba(245,246,246,0.6);\n  font-size: 13px;\n  color: #d9dbdf !important;\n}\n.daterangepicker td.off:hover,\n.daterangepicker td.off.in-range:hover,\n.daterangepicker td.off.start-date:hover,\n.daterangepicker td.off.end-date:hover {\n  background: rgba(245,246,246,0.6);\n}\n.daterangepicker td.in-range {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n  border-radius: 0;\n}\n.daterangepicker td.in-range:not(.off):last-child {\n  border-radius: 0 2px 2px 0;\n}\n.daterangepicker td.in-range:not(.off):first-child {\n  border-radius: 2px 0 0 2px;\n}\n.daterangepicker td.start-date {\n  border-radius: 20px 0 0 20px;\n}\n.daterangepicker td.end-date {\n  border-radius: 0 20px 20px 0;\n}\n.daterangepicker td.start-date.end-date {\n  border-radius: 4px;\n}\n.daterangepicker td.active,\n.daterangepicker td.active:hover {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n}\n.daterangepicker th.month {\n  width: auto;\n  font-family: 'Open Sans', sans-serif;\n  padding: 10px 0;\n  font-weight: 600;\n  font-size: 13px;\n  color: #575a61;\n  letter-spacing: 0;\n  text-align: center;\n}\n.daterangepicker th.month,\n.daterangepicker th.prev,\n.daterangepicker th.next {\n  line-height: 1.5;\n  padding: 16px 0 9px;\n}\n.daterangepicker th.prev:hover,\n.daterangepicker th.next:hover {\n  opacity: 0.75;\n}\n.daterangepicker td.disabled,\n.daterangepicker option.disabled {\n  color: #999;\n  cursor: not-allowed;\n  text-decoration: line-through;\n}\n.daterangepicker select.monthselect,\n.daterangepicker select.yearselect {\n  font-size: 12px;\n  padding: 1px;\n  height: auto;\n  margin: 0;\n  cursor: default;\n}\n.daterangepicker select.monthselect {\n  margin-right: 2%;\n  width: 56%;\n}\n.daterangepicker select.yearselect {\n  width: 40%;\n}\n.daterangepicker select.hourselect,\n.daterangepicker select.minuteselect,\n.daterangepicker select.secondselect,\n.daterangepicker select.ampmselect {\n  width: 50px;\n  margin: 0 auto;\n  background: #eee;\n  border: 1px solid #eee;\n  padding: 2px;\n  outline: 0;\n  font-size: 12px;\n}\n.daterangepicker .calendar-time {\n  text-align: center;\n  margin: 4px auto 0 auto;\n  line-height: 30px;\n  position: relative;\n}\n.daterangepicker .calendar-time select.disabled {\n  color: #ccc;\n  cursor: not-allowed;\n}\n.daterangepicker .drp-buttons {\n  clear: both;\n  text-align: right;\n  padding: 8px;\n  border-top: 1px solid #ddd;\n  display: none;\n  line-height: 12px;\n  vertical-align: middle;\n}\n.daterangepicker .drp-selected {\n  display: inline-block;\n  font-size: 12px;\n  padding-right: 8px;\n}\n.daterangepicker .drp-buttons .btn {\n  margin-left: 8px;\n  font-size: 12px;\n  font-weight: bold;\n  padding: 4px 8px;\n}\n.daterangepicker.show-ranges .drp-calendar.left {\n  float: left;\n}\n.daterangepicker .ranges {\n  float: none;\n  text-align: left;\n  margin: 0;\n}\n.daterangepicker.show-calendar .ranges {\n  clear: both;\n  border-top: 1px solid #ced1d8;\n  background: #f7f8fa;\n  padding: 12px 12px 17px;\n}\n.daterangepicker .ranges ul {\n  list-style: none;\n  margin: 0 auto;\n  padding: 0;\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap;\n}\n.daterangepicker .ranges li {\n  padding: 10px 12px;\n  cursor: pointer;\n  width: 25%;\n  font-family: 'Open Sans', sans-serif;\n  font-weight: 600;\n  font-size: 14px;\n  color: #5a5c61;\n  text-align: center;\n}\n.daterangepicker .ranges li:hover {\n  background-color: #eee;\n}\n.daterangepicker .ranges li.active {\n  background-color: #08c;\n  color: #fff;\n}\n", map: {"version":3,"sources":["Datepicker.vue"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,cAAc;EACd,UAAU;EACV,kBAAkB;EAClB,yBAAyB;EACzB,8CAA8C;EAC9C,2BAA2B;EAC3B,eAAe;AACjB;AACA;EACE,SAAS;EACT,mCAAmC;EACnC,kCAAkC;EAClC,6BAA6B;AAC/B;AACA;EACE,SAAS;EACT,mCAAmC;EACnC,6BAA6B;EAC7B,kCAAkC;AACpC;AACA;EACE,UAAU;AACZ;AACA;EACE,WAAW;AACb;AACA;EACE,OAAO;EACP,QAAQ;EACR,QAAQ;EACR,iBAAiB;EACjB,kBAAkB;AACpB;AACA;EACE,OAAO;EACP,QAAQ;EACR,QAAQ;EACR,iBAAiB;EACjB,kBAAkB;AACpB;AACA;EACE,SAAS;AACX;AACA;EACE,UAAU;AACZ;AACA;EACE,gBAAgB;AAClB;AACA;EACE,YAAY;EACZ,YAAY;EACZ,sBAAsB;EACtB,0BAA0B;AAC5B;AACA;EACE,YAAY;EACZ,YAAY;EACZ,sBAAsB;EACtB,0BAA0B;AAC5B;AACA;;EAEE,WAAW;AACb;AACA;EACE,aAAa;AACf;AACA;EACE,cAAc;AAChB;AACA;EACE,cAAc;AAChB;AACA;EACE,aAAa;AACf;AACA;EACE,2BAA2B;AAC7B;AACA;EACE,2BAA2B;EAC3B,WAAW;AACb;AACA;EACE,YAAY;AACd;AACA;EACE,mBAAmB;EACnB,eAAe;AACjB;AACA;EACE,iBAAiB;AACnB;AACA;EACE,oEAAoE;EACpE,yBAAyB;EACzB,6CAA6C;EAC7C,qBAAqB;EACrB,kBAAkB;EAClB,kBAAkB;EAClB,wBAAwB;EACxB,eAAe;EACf,cAAc;EACd,qBAAqB;AACvB;AACA;EACE,mBAAmB;EACnB,WAAW;EACX,qBAAqB;AACvB;AACA;;EAEE,WAAW;EACX,qBAAqB;EACrB,yBAAyB;EACzB,gBAAgB;EAChB,qBAAqB;EACrB,YAAY;AACd;AACA;EACE,yBAAyB;EACzB,iCAAiC;AACnC;AACA;EACE,yBAAyB;EACzB,iCAAiC;AACnC;AACA;;EAEE,sBAAsB;EACtB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,6BAA6B;EAC7B,mBAAmB;EACnB,eAAe;EACf,oCAAoC;EACpC,cAAc;EACd,kBAAkB;AACpB;AACA;EACE,sBAAsB;EACtB,6BAA6B;EAC7B,mBAAmB;EACnB,eAAe;EACf,oCAAoC;EACpC,YAAY;EACZ,QAAQ;EACR,YAAY;EACZ,uBAAuB;AACzB;AACA;EACE,uBAAuB;AACzB;AACA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,mBAAmB;EACnB,mBAAmB;EACnB,qBAAqB;AACvB;AACA;;EAEE,cAAc;EACd,kBAAkB;AACpB;AACA;;EAEE,cAAc;AAChB;AACA;;;;;;EAME,WAAW;AACb;AACA;EACE,WAAW;EACX,SAAS;EACT,iBAAiB;EACjB,yBAAyB;AAC3B;AACA;EACE,yBAAyB;EACzB,WAAW;EACX,YAAY;EACZ,YAAY;EACZ,iBAAiB;AACnB;AACA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,mBAAmB;EACnB,yBAAyB;EACzB,qBAAqB;AACvB;AACA;EACE,YAAY;AACd;AACA;;EAEE,cAAc;EACd,WAAW;AACb;AACA;;;;EAIE,yBAAyB;EACzB,iCAAiC;EACjC,eAAe;EACf,yBAAyB;AAC3B;AACA;;;;EAIE,iCAAiC;AACnC;AACA;EACE,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,gBAAgB;AAClB;AACA;EACE,0BAA0B;AAC5B;AACA;EACE,0BAA0B;AAC5B;AACA;EACE,4BAA4B;AAC9B;AACA;EACE,4BAA4B;AAC9B;AACA;EACE,kBAAkB;AACpB;AACA;;EAEE,yBAAyB;EACzB,WAAW;EACX,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,oCAAoC;EACpC,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,cAAc;EACd,iBAAiB;EACjB,kBAAkB;AACpB;AACA;;;EAGE,gBAAgB;EAChB,mBAAmB;AACrB;AACA;;EAEE,aAAa;AACf;AACA;;EAEE,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;AACA;;EAEE,eAAe;EACf,YAAY;EACZ,YAAY;EACZ,SAAS;EACT,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,UAAU;AACZ;AACA;EACE,UAAU;AACZ;AACA;;;;EAIE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,sBAAsB;EACtB,YAAY;EACZ,UAAU;EACV,eAAe;AACjB;AACA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,iBAAiB;EACjB,kBAAkB;AACpB;AACA;EACE,WAAW;EACX,mBAAmB;AACrB;AACA;EACE,WAAW;EACX,iBAAiB;EACjB,YAAY;EACZ,0BAA0B;EAC1B,aAAa;EACb,iBAAiB;EACjB,sBAAsB;AACxB;AACA;EACE,qBAAqB;EACrB,eAAe;EACf,kBAAkB;AACpB;AACA;EACE,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,gBAAgB;AAClB;AACA;EACE,WAAW;AACb;AACA;EACE,WAAW;EACX,gBAAgB;EAChB,SAAS;AACX;AACA;EACE,WAAW;EACX,6BAA6B;EAC7B,mBAAmB;EACnB,uBAAuB;AACzB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,UAAU;EACV,WAAW;EACX,aAAa;EACb,eAAe;AACjB;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,UAAU;EACV,oCAAoC;EACpC,gBAAgB;EAChB,eAAe;EACf,cAAc;EACd,kBAAkB;AACpB;AACA;EACE,sBAAsB;AACxB;AACA;EACE,sBAAsB;EACtB,WAAW;AACb","file":"Datepicker.vue","sourcesContent":[".daterangepicker {\n  color: inherit;\n  margin: 0 11px;\n  padding: 0;\n  border-radius: 5px;\n  border: 1px solid #e9ebee;\n  box-shadow: 0 1px 3px 0 rgba(126,131,143,0.06);\n  margin-bottom: 0 !important;\n  font-size: 13px;\n}\n.daterangepicker:before {\n  top: -7px;\n  border-right: 7px solid transparent;\n  border-left: 7px solid transparent;\n  border-bottom: 7px solid #ccc;\n}\n.daterangepicker:after {\n  top: -6px;\n  border-right: 6px solid transparent;\n  border-bottom: 6px solid #fff;\n  border-left: 6px solid transparent;\n}\n.daterangepicker.opensleft:before {\n  right: 9px;\n}\n.daterangepicker.opensleft:after {\n  right: 10px;\n}\n.daterangepicker.openscenter:before {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.openscenter:after {\n  left: 0;\n  right: 0;\n  width: 0;\n  margin-left: auto;\n  margin-right: auto;\n}\n.daterangepicker.opensright:before {\n  left: 9px;\n}\n.daterangepicker.opensright:after {\n  left: 10px;\n}\n.daterangepicker.drop-up {\n  margin-top: -7px;\n}\n.daterangepicker.drop-up:before {\n  top: initial;\n  bottom: -7px;\n  border-bottom: initial;\n  border-top: 7px solid #ccc;\n}\n.daterangepicker.drop-up:after {\n  top: initial;\n  bottom: -6px;\n  border-bottom: initial;\n  border-top: 6px solid #fff;\n}\n.daterangepicker.single .daterangepicker .ranges,\n.daterangepicker.single .drp-calendar {\n  float: none;\n}\n.daterangepicker.single .drp-selected {\n  display: none;\n}\n.daterangepicker.show-calendar .drp-calendar {\n  display: block;\n}\n.daterangepicker.show-calendar .drp-buttons {\n  display: block;\n}\n.daterangepicker.auto-apply .drp-buttons {\n  display: none;\n}\n.daterangepicker .drp-calendar.left {\n  padding: 8px 11px 25px 20px;\n}\n.daterangepicker .drp-calendar.right {\n  padding: 8px 10px 25px 12px;\n  float: left;\n}\n.daterangepicker .drp-calendar.single .calendar-table {\n  border: none;\n}\n.calendar-table {\n  margin-bottom: 22px;\n  padding: 0 12px;\n}\n.drp-calendar {\n  text-align: right;\n}\n.drp-calendar .btn {\n  background-image: linear-gradient(-180deg, #fdfefe 0%, #fbfcfc 100%);\n  border: 1px solid #d9dbdf;\n  box-shadow: 0 1px 2px 0 rgba(126,131,143,0.1);\n  display: inline-block;\n  padding: 10px 12px;\n  border-radius: 5px;\n  font-family: 'Open Sans';\n  font-size: 13px;\n  color: #73767d;\n  margin: 0 24px 21px 0;\n}\n.drp-calendar .btn:hover {\n  background: #82a2ff;\n  color: #fff;\n  border-color: #82a2ff;\n}\n.daterangepicker .calendar-table .next span,\n.daterangepicker .calendar-table .prev span {\n  color: #fff;\n  border: solid #b4b7bf;\n  border-width: 0 1px 1px 0;\n  border-radius: 0;\n  display: inline-block;\n  padding: 4px;\n}\n.daterangepicker .calendar-table .next span {\n  transform: rotate(-45deg);\n  -webkit-transform: rotate(-45deg);\n}\n.daterangepicker .calendar-table .prev span {\n  transform: rotate(135deg);\n  -webkit-transform: rotate(135deg);\n}\n.daterangepicker .calendar-table th,\n.daterangepicker .calendar-table td {\n  vertical-align: middle;\n  width: 17px;\n  height: 35px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  color: #b4b7bf;\n  text-align: center;\n}\n.available.active.start-date.end-date {\n  vertical-align: middle;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n  font-family: 'Open Sans', sans-serif;\n  max-width: 0;\n  width: 0;\n  height: auto;\n  background: transparent;\n}\n.available.active.start-date.end-date:hover {\n  background: transparent;\n}\n.available.active.start-date.end-date span {\n  width: 35px;\n  height: 35px;\n  line-height: 35px;\n  border-radius: 50px;\n  background: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker .calendar-table tbody td,\n.daterangepicker .calendar-table thead td {\n  color: #575a61;\n  text-align: center;\n}\n.daterangepicker .calendar-table tbody td.off,\n.daterangepicker .calendar-table thead td.off {\n  color: #d9dbdf;\n}\n.daterangepicker .calendar-table tbody td.in-range,\n.daterangepicker .calendar-table thead td.in-range,\n.daterangepicker .calendar-table tbody td.start-date,\n.daterangepicker .calendar-table thead td.start-date,\n.daterangepicker .calendar-table tbody td.end-date,\n.daterangepicker .calendar-table thead td.end-date {\n  color: #fff;\n}\n.daterangepicker .calendar-table table {\n  width: 100%;\n  margin: 0;\n  border-spacing: 0;\n  border-collapse: collapse;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) {\n  border-color: transparent;\n  color: #fff;\n  max-width: 0;\n  height: 34px;\n  line-height: 34px;\n}\n.daterangepicker td.available:hover:not(.off):not(.active):not(.in-range) span {\n  width: 34px;\n  height: 34px;\n  line-height: 34px;\n  border-radius: 50px;\n  background-color: #82a2ff;\n  display: inline-block;\n}\n.daterangepicker th.available:hover {\n  opacity: 0.8;\n}\n.daterangepicker td.week,\n.daterangepicker th.week {\n  font-size: 80%;\n  color: #ccc;\n}\n.daterangepicker td.off,\n.daterangepicker td.off.in-range,\n.daterangepicker td.off.start-date,\n.daterangepicker td.off.end-date {\n  border-color: transparent;\n  background: rgba(245,246,246,0.6);\n  font-size: 13px;\n  color: #d9dbdf !important;\n}\n.daterangepicker td.off:hover,\n.daterangepicker td.off.in-range:hover,\n.daterangepicker td.off.start-date:hover,\n.daterangepicker td.off.end-date:hover {\n  background: rgba(245,246,246,0.6);\n}\n.daterangepicker td.in-range {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n  border-radius: 0;\n}\n.daterangepicker td.in-range:not(.off):last-child {\n  border-radius: 0 2px 2px 0;\n}\n.daterangepicker td.in-range:not(.off):first-child {\n  border-radius: 2px 0 0 2px;\n}\n.daterangepicker td.start-date {\n  border-radius: 20px 0 0 20px;\n}\n.daterangepicker td.end-date {\n  border-radius: 0 20px 20px 0;\n}\n.daterangepicker td.start-date.end-date {\n  border-radius: 4px;\n}\n.daterangepicker td.active,\n.daterangepicker td.active:hover {\n  border-color: transparent;\n  color: #fff;\n  background: #82a2ff;\n}\n.daterangepicker th.month {\n  width: auto;\n  font-family: 'Open Sans', sans-serif;\n  padding: 10px 0;\n  font-weight: 600;\n  font-size: 13px;\n  color: #575a61;\n  letter-spacing: 0;\n  text-align: center;\n}\n.daterangepicker th.month,\n.daterangepicker th.prev,\n.daterangepicker th.next {\n  line-height: 1.5;\n  padding: 16px 0 9px;\n}\n.daterangepicker th.prev:hover,\n.daterangepicker th.next:hover {\n  opacity: 0.75;\n}\n.daterangepicker td.disabled,\n.daterangepicker option.disabled {\n  color: #999;\n  cursor: not-allowed;\n  text-decoration: line-through;\n}\n.daterangepicker select.monthselect,\n.daterangepicker select.yearselect {\n  font-size: 12px;\n  padding: 1px;\n  height: auto;\n  margin: 0;\n  cursor: default;\n}\n.daterangepicker select.monthselect {\n  margin-right: 2%;\n  width: 56%;\n}\n.daterangepicker select.yearselect {\n  width: 40%;\n}\n.daterangepicker select.hourselect,\n.daterangepicker select.minuteselect,\n.daterangepicker select.secondselect,\n.daterangepicker select.ampmselect {\n  width: 50px;\n  margin: 0 auto;\n  background: #eee;\n  border: 1px solid #eee;\n  padding: 2px;\n  outline: 0;\n  font-size: 12px;\n}\n.daterangepicker .calendar-time {\n  text-align: center;\n  margin: 4px auto 0 auto;\n  line-height: 30px;\n  position: relative;\n}\n.daterangepicker .calendar-time select.disabled {\n  color: #ccc;\n  cursor: not-allowed;\n}\n.daterangepicker .drp-buttons {\n  clear: both;\n  text-align: right;\n  padding: 8px;\n  border-top: 1px solid #ddd;\n  display: none;\n  line-height: 12px;\n  vertical-align: middle;\n}\n.daterangepicker .drp-selected {\n  display: inline-block;\n  font-size: 12px;\n  padding-right: 8px;\n}\n.daterangepicker .drp-buttons .btn {\n  margin-left: 8px;\n  font-size: 12px;\n  font-weight: bold;\n  padding: 4px 8px;\n}\n.daterangepicker.show-ranges .drp-calendar.left {\n  float: left;\n}\n.daterangepicker .ranges {\n  float: none;\n  text-align: left;\n  margin: 0;\n}\n.daterangepicker.show-calendar .ranges {\n  clear: both;\n  border-top: 1px solid #ced1d8;\n  background: #f7f8fa;\n  padding: 12px 12px 17px;\n}\n.daterangepicker .ranges ul {\n  list-style: none;\n  margin: 0 auto;\n  padding: 0;\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap;\n}\n.daterangepicker .ranges li {\n  padding: 10px 12px;\n  cursor: pointer;\n  width: 25%;\n  font-family: 'Open Sans', sans-serif;\n  font-weight: 600;\n  font-size: 14px;\n  color: #5a5c61;\n  text-align: center;\n}\n.daterangepicker .ranges li:hover {\n  background-color: #eee;\n}\n.daterangepicker .ranges li.active {\n  background-color: #08c;\n  color: #fff;\n}\n"]}, media: undefined });
 
     };
     /* scoped */
