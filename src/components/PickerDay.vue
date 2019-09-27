@@ -81,18 +81,6 @@ export default {
     }
   },
   computed: {
-    allDays () {
-      const allDays = this.blankDays.concat(this.days)
-      let i
-      let j
-      let tmp
-      let chunk = 7
-      for (i = 0, j = allDays.length; i < j; i += chunk) {
-        tmp = allDays.slice(i, i + chunk)
-      }
-      return tmp
-    },
-
     /**
      * Returns an array of day names
      * @return {String[]}
@@ -189,6 +177,18 @@ export default {
       return this.isRtl
         ? this.isPreviousMonthDisabled(this.pageTimestamp)
         : this.isNextMonthDisabled(this.pageTimestamp)
+    },
+
+    allDays () {
+      const allDays = this.blankDays.concat(this.days)
+      let i
+      let j
+      let tmp
+      let chunk = 7
+      for (i = 0, j = allDays.length; i < j; i += chunk) {
+        tmp = allDays.slice(i, i + chunk)
+      }
+      return tmp
     }
   },
   methods: {
