@@ -1168,47 +1168,60 @@ var __vue_render__$1 = function() {
             0
           ),
           _vm._v(" "),
-          _c("tbody", [
-            _c(
-              "tr",
-              { staticClass: "days" },
-              [
-                _vm.blankDays > 0
-                  ? _vm._l(_vm.blankDays, function(d) {
-                      return _c("span", {
-                        key: d.timestamp,
-                        staticClass: "off in-range available",
-                        domProps: {
-                          innerHTML: _vm._s(_vm.dayCellContent(_vm.day))
-                        }
-                      })
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm._l(_vm.days, function(day) {
+          _vm._m(0)
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c(
+          "td",
+          { staticClass: "days" },
+          [
+            _vm.blankDays > 0
+              ? _vm._l(_vm.blankDays, function(d) {
                   return _c("span", {
-                    key: day.timestamp,
-                    staticClass: "available",
-                    class: _vm.dayClasses(day),
-                    domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
-                    on: {
-                      click: function($event) {
-                        return _vm.selectDate(day)
-                      }
-                    }
+                    key: d.timestamp,
+                    staticClass: "cell day blank",
+                    domProps: { innerHTML: _vm._s(_vm.dayCellContent(d)) }
                   })
                 })
-              ],
-              2
-            )
-          ])
-        ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.days, function(day) {
+              return _c("span", {
+                key: day.timestamp,
+                staticClass: "cell day",
+                class: _vm.dayClasses(day),
+                domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                on: {
+                  click: function($event) {
+                    return _vm.selectDate(day)
+                  }
+                }
+              })
+            })
+          ],
+          2
+        )
       ])
     ],
     2
   )
 };
-var __vue_staticRenderFns__$1 = [];
+var __vue_staticRenderFns__$1 = [
+  function() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c("tbody", [
+      _c("tr", [
+        _c("td", { attrs: { colspan: "7" } }, [
+          _vm._v("\n              Bla\n            ")
+        ])
+      ])
+    ])
+  }
+];
 __vue_render__$1._withStripped = true;
 
   /* style */
