@@ -793,12 +793,14 @@ var script$1 = {
       var d = this.pageDate;
       var days = [];
       var dObj = this.useUtc ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)) : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes());
+      console.log(this.pageDate);
+      console.log(dObj);
       var daysInMonth = this.utils.daysInMonth(this.utils.getFullYear(dObj), this.utils.getMonth(dObj));
 
       if (this.mondayFirst) {
         var _c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6;
 
-        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c - 1));
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c));
 
         for (var i = 0; i < _c; i++) {
           days.push({
@@ -822,7 +824,7 @@ var script$1 = {
       }
 
       var c = this.utils.getDay(dObj);
-      this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c - 1));
+      this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c));
 
       for (var _i = 0; _i < c; _i++) {
         days.push({

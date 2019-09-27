@@ -102,13 +102,14 @@ export default {
       const d = this.pageDate
       let days = []
       let dObj = this.useUtc
-        ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1))
-        : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes())
+        ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() - 1, 1))
+        : new Date(d.getFullYear(), d.getMonth() - 1, 1, d.getHours(), d.getMinutes())
+
       let daysInMonth = this.utils.daysInMonth(this.utils.getFullYear(dObj), this.utils.getMonth(dObj))
 
       if (this.mondayFirst) {
         let c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6
-        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c - 1))
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c))
         for (let i = 0; i < c; i++) {
           days.push({
             date: this.utils.getDate(dObj),
@@ -130,7 +131,7 @@ export default {
       }
 
       let c = this.utils.getDay(dObj)
-      this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c - 1))
+      this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c))
       for (let i = 0; i < c; i++) {
         days.push({
           date: this.utils.getDate(dObj),
