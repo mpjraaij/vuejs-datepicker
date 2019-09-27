@@ -108,11 +108,12 @@ export default {
 
       if (this.mondayFirst) {
         let c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6
-        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c))
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c + 1))
         for (let i = 0; i < c; i++) {
           days.push({
             date: this.utils.getDate(dObj),
             timestamp: dObj.getTime(),
+            isPreviousMonth: true,
             isSelected: this.isSelectedDate(dObj),
             isDisabled: this.isDisabledDate(dObj),
             isHighlighted: this.isHighlightedDate(dObj),
@@ -134,6 +135,7 @@ export default {
         days.push({
           date: this.utils.getDate(dObj),
           timestamp: dObj.getTime(),
+          isPreviousMonth: true,
           isSelected: this.isSelectedDate(dObj),
           isDisabled: this.isDisabledDate(dObj),
           isHighlighted: this.isHighlightedDate(dObj),
@@ -223,7 +225,7 @@ export default {
       console.log(this.blankDays)
       console.log(this.days)
 
-      // console.log({ ...this.blankDays, ...this.days })
+      console.log({ ...this.blankDays, ...this.days })
 
       return 'allDays'
     }

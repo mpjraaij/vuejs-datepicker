@@ -722,7 +722,6 @@ __vue_render__._withStripped = true;
     undefined
   );
 
-//
 var script$1 = {
   props: {
     showDayView: Boolean,
@@ -781,12 +780,13 @@ var script$1 = {
       if (this.mondayFirst) {
         var _c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6;
 
-        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c));
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c + 1));
 
         for (var i = 0; i < _c; i++) {
           days.push({
             date: this.utils.getDate(dObj),
             timestamp: dObj.getTime(),
+            isPreviousMonth: true,
             isSelected: this.isSelectedDate(dObj),
             isDisabled: this.isDisabledDate(dObj),
             isHighlighted: this.isHighlightedDate(dObj),
@@ -810,6 +810,7 @@ var script$1 = {
         days.push({
           date: this.utils.getDate(dObj),
           timestamp: dObj.getTime(),
+          isPreviousMonth: true,
           isSelected: this.isSelectedDate(dObj),
           isDisabled: this.isDisabledDate(dObj),
           isHighlighted: this.isHighlightedDate(dObj),
@@ -899,8 +900,8 @@ var script$1 = {
     },
     allDays: function allDays() {
       console.log(this.blankDays);
-      console.log(this.days); // console.log({ ...this.blankDays, ...this.days })
-
+      console.log(this.days);
+      console.log(_objectSpread({}, this.blankDays, this.days));
       return 'allDays';
     }
   },
