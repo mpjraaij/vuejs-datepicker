@@ -859,6 +859,8 @@
         return this.isRtl ? this.isPreviousMonthDisabled(this.pageTimestamp) : this.isNextMonthDisabled(this.pageTimestamp);
       },
       allDays: function allDays() {
+        console.log(this.blankDays);
+        console.log(this.days);
         return 'allDays';
       }
     },

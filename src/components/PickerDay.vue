@@ -180,6 +180,8 @@ export default {
     },
 
     allDays () {
+      console.log(this.blankDays)
+      console.log(this.days)
       return 'allDays'
     }
   },
