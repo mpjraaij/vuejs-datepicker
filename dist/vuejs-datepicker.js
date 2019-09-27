@@ -757,20 +757,6 @@
       };
     },
     computed: {
-      allDays: function allDays() {
-        var allDays = this.blankDays.concat(this.days);
-        var i;
-        var j;
-        var tmp;
-        var chunk = 7;
-
-        for (i = 0, j = allDays.length; i < j; i += chunk) {
-          tmp = allDays.slice(i, i + chunk);
-        }
-
-        return tmp;
-      },
-
       /**
        * Returns an array of day names
        * @return {String[]}
@@ -871,6 +857,19 @@
        */
       isRightNavDisabled: function isRightNavDisabled() {
         return this.isRtl ? this.isPreviousMonthDisabled(this.pageTimestamp) : this.isNextMonthDisabled(this.pageTimestamp);
+      },
+      allDays: function allDays() {
+        var allDays = this.blankDays.concat(this.days);
+        var i;
+        var j;
+        var tmp;
+        var chunk = 7;
+
+        for (i = 0, j = allDays.length; i < j; i += chunk) {
+          tmp = allDays.slice(i, i + chunk);
+        }
+
+        return tmp;
       }
     },
     methods: {
@@ -1186,7 +1185,15 @@
               0
             ),
             _vm._v(" "),
-            _vm._m(0)
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _vm._v(
+                    "\n              " + _vm._s(_vm.allDays) + "\n            "
+                  )
+                ])
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -1226,16 +1233,7 @@
       2
     )
   };
-  var __vue_staticRenderFns__$1 = [
-    function() {
-      var _vm = this;
-      var _h = _vm.$createElement;
-      var _c = _vm._self._c || _h;
-      return _c("tbody", [
-        _c("tr", [_c("td", [_vm._v("\n              all\n            ")])])
-      ])
-    }
-  ];
+  var __vue_staticRenderFns__$1 = [];
   __vue_render__$1._withStripped = true;
 
     /* style */

@@ -26,7 +26,7 @@
         <tbody>
           <tr>
             <td>
-              all
+              {{ allDays }}
             </td>
           </tr>
         </tbody>
