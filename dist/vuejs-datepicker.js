@@ -963,7 +963,6 @@
           fullWeek.push(chunkedDays);
         }
 
-        console.log(fullWeek);
         return fullWeek;
       }
     },
@@ -1280,15 +1279,29 @@
               0
             ),
             _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [
-                  _vm._v(
-                    "\n              " + _vm._s(_vm.allDays) + "\n            "
-                  )
-                ])
-              ])
-            ])
+            _c(
+              "tbody",
+              _vm._l(_vm.allDays, function(week, index) {
+                return _c(
+                  "tr",
+                  { key: index + 1 },
+                  _vm._l(week, function(day) {
+                    return _c("td", {
+                      key: day.timestamp,
+                      class: _vm.dayClasses(day),
+                      domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                      on: {
+                        click: function($event) {
+                          return _vm.selectDate(day)
+                        }
+                      }
+                    })
+                  }),
+                  0
+                )
+              }),
+              0
+            )
           ])
         ]),
         _vm._v(" "),
