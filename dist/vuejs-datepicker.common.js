@@ -1273,64 +1273,31 @@ var __vue_render__$1 = function() {
               ])
             }),
             0
-          ),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.allDays, function(week, index) {
-              return _c(
-                "tr",
-                { key: index + 1 },
-                _vm._l(week, function(day) {
-                  return _c("td", {
-                    key: day.timestamp,
-                    class: _vm.dayClasses(day),
-                    domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
-                    on: {
-                      click: function($event) {
-                        return _vm.selectDate(day)
-                      }
-                    }
-                  })
-                }),
-                0
-              )
-            }),
-            0
           )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
+        ]),
+        _vm._v(" "),
         _c(
-          "td",
-          { staticClass: "days" },
-          [
-            _vm.blankDays > 0
-              ? _vm._l(_vm.blankDays, function(d) {
-                  return _c("span", {
-                    key: d.timestamp,
-                    staticClass: "cell day blank",
-                    domProps: { innerHTML: _vm._s(_vm.dayCellContent(d)) }
-                  })
-                })
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._l(_vm.days, function(day) {
-              return _c("span", {
-                key: day.timestamp,
-                staticClass: "cell day",
-                class: _vm.dayClasses(day),
-                domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
-                on: {
-                  click: function($event) {
-                    return _vm.selectDate(day)
+          "tbody",
+          _vm._l(_vm.allDays, function(week, index) {
+            return _c(
+              "tr",
+              { key: index + 1 },
+              _vm._l(week, function(day) {
+                return _c("td", {
+                  key: day.timestamp,
+                  class: _vm.dayClasses(day),
+                  domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                  on: {
+                    click: function($event) {
+                      return _vm.selectDate(day)
+                    }
                   }
-                }
-              })
-            })
-          ],
-          2
+                })
+              }),
+              0
+            )
+          }),
+          0
         )
       ])
     ],

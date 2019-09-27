@@ -23,37 +23,20 @@
             {{ d.charAt(0) }}
           </th>
 				</tr>
-        <tbody>
-          <tr
-            v-for="(week, index) in allDays"
-            :key="index + 1">
-            <td 
-              v-for="day in week"
-              :key="day.timestamp"
-              :class="dayClasses(day)"
-              v-html="dayCellContent(day)"
-              @click="selectDate(day)"></td>
-          </tr>
-        </tbody>
       </thead>
-    </table>
-    <tr>
-      <td class="days">
-        <template v-if="blankDays > 0">
-          <span 
-            class="cell day blank" 
-            v-for="d in blankDays" 
-            v-html="dayCellContent(d)"
-            :key="d.timestamp"></span>
-        </template>
-        <span class="cell day"
-            v-for="day in days"
+      <tbody>
+        <tr
+          v-for="(week, index) in allDays"
+          :key="index + 1">
+          <td 
+            v-for="day in week"
             :key="day.timestamp"
             :class="dayClasses(day)"
             v-html="dayCellContent(day)"
-            @click="selectDate(day)"></span>
-      </td>
-    </tr>
+            @click="selectDate(day)"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
@@ -443,14 +426,15 @@ export default {
     dayClasses (day) {
       return {
         'selected': day.isSelected,
-        'disabled': day.isDisabled,
-        'highlighted': day.isHighlighted,
+        'available': ! day.isDisabled,
+        'off': day.isPreviousMonth || day.isNextMonth,
+        'in-range': day.isHighlighted,
         'today': day.isToday,
         'weekend': day.isWeekend,
-        'sat': day.isSaturday,
-        'sun': day.isSunday,
-        'highlight-start': day.isHighlightStart,
-        'highlight-end': day.isHighlightEnd
+        'saturday': day.isSaturday,
+        'sunday': day.isSunday,
+        'start-date': day.isHighlightStart,
+        'end-date': day.isHighlightEnd
       }
     },
     /**
