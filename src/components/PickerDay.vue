@@ -125,6 +125,7 @@ export default {
           date: this.utils.getDate(dObj),
           timestamp: dObj.getTime(),
           isPreviousMonth: true,
+          isLastItem: i === c - 1,
           isSelected: this.isSelectedDate(dObj),
           isDisabled: this.isDisabledDate(dObj),
           isHighlighted: this.isHighlightedDate(dObj),
@@ -155,6 +156,7 @@ export default {
           date: this.utils.getDate(dObj),
           timestamp: dObj.getTime(),
           isNextMonth: true,
+          isFirstItem: i === 0,
           isSelected: this.isSelectedDate(dObj),
           isDisabled: this.isDisabledDate(dObj),
           isHighlighted: this.isHighlightedDate(dObj),
@@ -426,10 +428,10 @@ export default {
     dayClasses (day) {
       return {
         'available': true,
-        'selected': day.isSelected,
+        'active': day.isSelected,
         'disabled': day.isDisabled,
         'off': day.isPreviousMonth || day.isNextMonth,
-        'in-range': day.isHighlighted,
+        'in-range': (day.isPreviousMonth && !day.isLastItem) || (day.isNextMonth && !day.isFirstItem) || (day.isHighlighted && !day.isHighlightStart && !day.isHighlightEnd),
         'today': day.isToday,
         'weekend': day.isWeekend,
         'saturday': day.isSaturday,
