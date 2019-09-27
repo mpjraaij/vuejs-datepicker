@@ -86,7 +86,8 @@ export default {
     translation: Object,
     isRtl: Boolean,
     mondayFirst: Boolean,
-    useUtc: Boolean
+    useUtc: Boolean,
+    count: 0,
   },
   data () {
     const constructedDateUtils = makeDateUtils(this.useUtc)
@@ -95,6 +96,14 @@ export default {
     }
   },
   computed: {
+    dayCount () {
+      if (this.count === 7) {
+        this.count = 0;
+      }
+      this.count++;
+      return this.count;
+    },
+
     /**
      * Returns an array of day names
      * @return {String[]}
