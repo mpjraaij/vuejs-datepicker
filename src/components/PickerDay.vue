@@ -108,7 +108,7 @@ export default {
 
       if (this.mondayFirst) {
         let c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6
-        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c + 1))
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c - 1))
         for (let i = 0; i < c; i++) {
           days.push({
             date: this.utils.getDate(dObj),
@@ -130,7 +130,7 @@ export default {
       }
 
       let c = this.utils.getDay(dObj)
-      this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c))
+      this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c - 1))
       for (let i = 0; i < c; i++) {
         days.push({
           date: this.utils.getDate(dObj),
@@ -222,10 +222,18 @@ export default {
     },
 
     allDays () {
-      console.log(this.blankDays)
-      console.log(this.days)
+      let allDays = [ ...this.blankDays, ...this.days ]
+      let i
+      let j
+      let chunkedDays = []
+      let chunk = 7
 
       console.log([ ...this.blankDays, ...this.days ])
+
+      for (i = 0, j = allDays.length; i < j; i += chunk) {
+        chunkedDays = allDays.slice(i, i + chunk)
+        console.log(chunkedDays)
+      }
 
       return 'allDays'
     }

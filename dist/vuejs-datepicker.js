@@ -923,9 +923,18 @@
         return this.isRtl ? this.isPreviousMonthDisabled(this.pageTimestamp) : this.isNextMonthDisabled(this.pageTimestamp);
       },
       allDays: function allDays() {
-        console.log(this.blankDays);
-        console.log(this.days);
+        var allDays = [].concat(_toConsumableArray(this.blankDays), _toConsumableArray(this.days));
+        var i;
+        var j;
+        var chunkedDays = [];
+        var chunk = 7;
         console.log([].concat(_toConsumableArray(this.blankDays), _toConsumableArray(this.days)));
+
+        for (i = 0, j = allDays.length; i < j; i += chunk) {
+          chunkedDays = allDays.slice(i, i + chunk);
+          console.log(chunkedDays);
+        }
+
         return 'allDays';
       }
     },
