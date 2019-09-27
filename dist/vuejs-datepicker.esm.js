@@ -1154,7 +1154,17 @@ var __vue_render__$1 = function() {
               },
               [_c("span")]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "tr",
+            _vm._l(_vm.daysOfWeek, function(d) {
+              return _c("th", { key: d.timestamp }, [
+                _vm._v("\n            " + _vm._s(d) + "\n          ")
+              ])
+            }),
+            0
+          )
         ])
       ]),
       _vm._v(" "),
@@ -1162,14 +1172,6 @@ var __vue_render__$1 = function() {
         "div",
         { class: _vm.isRtl ? "flex-rtl" : "" },
         [
-          _vm._l(_vm.daysOfWeek, function(d) {
-            return _c(
-              "span",
-              { key: d.timestamp, staticClass: "cell day-header" },
-              [_vm._v(_vm._s(d))]
-            )
-          }),
-          _vm._v(" "),
           _vm.blankDays > 0
             ? _vm._l(_vm.blankDays, function(d) {
                 return _c("span", {
