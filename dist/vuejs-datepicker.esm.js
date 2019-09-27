@@ -846,7 +846,7 @@ var script$1 = {
     },
     comingDays: function comingDays() {
       var dayCount = this.blankDays.length + this.days.length;
-      var leftOver = 35 % dayCount;
+      var leftOver = 28 % dayCount;
       return leftOver;
     },
 

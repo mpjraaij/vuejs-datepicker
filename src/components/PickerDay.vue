@@ -153,7 +153,7 @@ export default {
     },
     comingDays () {
       let dayCount = this.blankDays.length + this.days.length
-      let leftOver = 35 % dayCount
+      let leftOver = 28 % dayCount
 
       return leftOver
     },
