@@ -90,8 +90,8 @@ export default {
       const d = this.pageDate
       let days = []
       let dObj = this.useUtc
-        ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() - 1, 1))
-        : new Date(d.getFullYear(), d.getMonth() - 1, 1, d.getHours(), d.getMinutes())
+        ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1))
+        : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes())
 
       let daysInMonth = this.utils.daysInMonth(this.utils.getFullYear(dObj), this.utils.getMonth(dObj))
 

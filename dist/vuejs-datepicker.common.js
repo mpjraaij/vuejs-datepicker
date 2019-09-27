@@ -794,7 +794,7 @@ var script$1 = {
     blankDays: function blankDays() {
       var d = this.pageDate;
       var days = [];
-      var dObj = this.useUtc ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() - 1, 1)) : new Date(d.getFullYear(), d.getMonth() - 1, 1, d.getHours(), d.getMinutes());
+      var dObj = this.useUtc ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)) : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes());
       var daysInMonth = this.utils.daysInMonth(this.utils.getFullYear(dObj), this.utils.getMonth(dObj));
 
       if (this.mondayFirst) {
