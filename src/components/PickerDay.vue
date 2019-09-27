@@ -32,15 +32,13 @@
                 <span 
                   class="cell day blank" 
                   v-for="d in blankDays" 
-                  v-html="dayCellContent(d)"
                   :key="d.timestamp"></span>
               </template>
               <span class="cell day"
                   v-for="day in days"
                   :key="day.timestamp"
                   :class="dayClasses(day)"
-                  v-html="dayCellContent(day)"
-                  @click="selectDate(day)"></span>
+                  @click="selectDate(day)">a</span>
             </td>
           </tr>
         </tbody>

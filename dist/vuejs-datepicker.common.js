@@ -744,7 +744,8 @@ var script$1 = {
     translation: Object,
     isRtl: Boolean,
     mondayFirst: Boolean,
-    useUtc: Boolean
+    useUtc: Boolean,
+    count: 0
   },
   data: function data() {
     var constructedDateUtils = makeDateUtils(this.useUtc);
@@ -753,6 +754,15 @@ var script$1 = {
     };
   },
   computed: {
+    dayCount: function dayCount() {
+      if (this.count === 7) {
+        this.count = 0;
+      }
+
+      this.count++;
+      return this.count;
+    },
+
     /**
      * Returns an array of day names
      * @return {String[]}
@@ -1178,24 +1188,26 @@ var __vue_render__$1 = function() {
                     ? _vm._l(_vm.blankDays, function(d) {
                         return _c("span", {
                           key: d.timestamp,
-                          staticClass: "cell day blank",
-                          domProps: { innerHTML: _vm._s(_vm.dayCellContent(d)) }
+                          staticClass: "cell day blank"
                         })
                       })
                     : _vm._e(),
                   _vm._v(" "),
                   _vm._l(_vm.days, function(day) {
-                    return _c("span", {
-                      key: day.timestamp,
-                      staticClass: "cell day",
-                      class: _vm.dayClasses(day),
-                      domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
-                      on: {
-                        click: function($event) {
-                          return _vm.selectDate(day)
+                    return _c(
+                      "span",
+                      {
+                        key: day.timestamp,
+                        staticClass: "cell day",
+                        class: _vm.dayClasses(day),
+                        on: {
+                          click: function($event) {
+                            return _vm.selectDate(day)
+                          }
                         }
-                      }
-                    })
+                      },
+                      [_vm._v("a")]
+                    )
                   })
                 ],
                 2
