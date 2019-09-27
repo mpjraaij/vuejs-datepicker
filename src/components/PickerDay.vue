@@ -1,7 +1,24 @@
 <template>
-  <div :class="[calendarClass, 'vdp-datepicker__calendar']" v-show="showDayView" :style="calendarStyle" @mousedown.prevent>
+  <div :class="[calendarClass, 'calendar-table']" v-show="showDayView" :style="calendarStyle" @mousedown.prevent>
     <slot name="beforeCalendarHeader"></slot>
-    <header>
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th
+            @click="isRtl ? nextMonth() : previousMonth()" 
+            class="prev available">
+						<span></span>
+					</th>
+					<th colspan="5" class="month">{{ isYmd ? currYearName : currMonthName }} {{ isYmd ? currMonthName : currYearName }}</th>
+					<th
+            @click="isRtl ? previousMonth() : nextMonth()" 
+            class="next available">
+						<span></span>
+					</th>
+        </tr>
+      </thead>
+    </table>
+    <!-- <header>
       <span
         @click="isRtl ? nextMonth() : previousMonth()"
         class="prev"
@@ -11,7 +28,7 @@
         @click="isRtl ? previousMonth() : nextMonth()"
         class="next"
         :class="{'disabled': isRightNavDisabled}">&gt;</span>
-    </header>
+    </header> -->
     <div :class="isRtl ? 'flex-rtl' : ''">
       <span class="cell day-header" v-for="d in daysOfWeek" :key="d.timestamp">{{ d }}</span>
       <template v-if="blankDays > 0">
