@@ -1153,8 +1153,9 @@ var script$1 = {
     },
     dayClasses: function dayClasses(day) {
       return {
+        'available': true,
         'selected': day.isSelected,
-        'available': !day.isDisabled,
+        'disabled': day.isDisabled,
         'off': day.isPreviousMonth || day.isNextMonth,
         'in-range': day.isHighlighted,
         'today': day.isToday,
@@ -1284,16 +1285,20 @@ var __vue_render__$1 = function() {
               "tr",
               { key: index + 1 },
               _vm._l(week, function(day) {
-                return _c("td", {
-                  key: day.timestamp,
-                  class: _vm.dayClasses(day),
-                  domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
-                  on: {
-                    click: function($event) {
-                      return _vm.selectDate(day)
-                    }
-                  }
-                })
+                return _c(
+                  "td",
+                  { key: day.timestamp, class: _vm.dayClasses(day) },
+                  [
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                      on: {
+                        click: function($event) {
+                          return _vm.selectDate(day)
+                        }
+                      }
+                    })
+                  ]
+                )
               }),
               0
             )

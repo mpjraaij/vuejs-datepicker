@@ -31,9 +31,9 @@
           <td 
             v-for="day in week"
             :key="day.timestamp"
-            :class="dayClasses(day)"
-            v-html="dayCellContent(day)"
-            @click="selectDate(day)"></td>
+            :class="dayClasses(day)">
+            <span v-html="dayCellContent(day)" @click="selectDate(day)"></span>  
+          </td>
         </tr>
       </tbody>
     </table>
@@ -425,8 +425,9 @@ export default {
     },
     dayClasses (day) {
       return {
+        'available': true,
         'selected': day.isSelected,
-        'available': !day.isDisabled,
+        'disabled': day.isDisabled,
         'off': day.isPreviousMonth || day.isNextMonth,
         'in-range': day.isHighlighted,
         'today': day.isToday,
