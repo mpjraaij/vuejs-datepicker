@@ -225,7 +225,7 @@ export default {
       console.log(this.blankDays)
       console.log(this.days)
 
-      console.log({ ...this.blankDays, ...this.days })
+      console.log([ ...this.blankDays, ...this.days ])
 
       return 'allDays'
     }

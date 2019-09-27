@@ -70,6 +70,26 @@ function _objectSpread(target) {
   return target;
 }
 
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
 var Language =
 /*#__PURE__*/
 function () {
@@ -901,7 +921,7 @@ var script$1 = {
     allDays: function allDays() {
       console.log(this.blankDays);
       console.log(this.days);
-      console.log(_objectSpread({}, this.blankDays, this.days));
+      console.log([].concat(_toConsumableArray(this.blankDays), _toConsumableArray(this.days)));
       return 'allDays';
     }
   },
