@@ -24,9 +24,11 @@
           </th>
 				</tr>
         <tbody>
-          <tr>
-            <td>
-              {{ allDays }}
+          <tr
+            v-for="(week, index) in allDays"
+            :key="index + 1">
+            <td colspan="7">
+              {{ week }}
             </td>
           </tr>
         </tbody>
@@ -265,6 +267,8 @@ export default {
         chunkedDays = allDays.slice(i, i + chunk)
         fullWeek.push(chunkedDays)
       }
+
+      console.log(fullWeek)
 
       return fullWeek
     }

@@ -959,6 +959,7 @@ var script$1 = {
         fullWeek.push(chunkedDays);
       }
 
+      console.log(fullWeek);
       return fullWeek;
     }
   },

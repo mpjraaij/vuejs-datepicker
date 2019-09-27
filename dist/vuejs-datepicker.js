@@ -963,6 +963,7 @@
           fullWeek.push(chunkedDays);
         }
 
+        console.log(fullWeek);
         return fullWeek;
       }
     },
