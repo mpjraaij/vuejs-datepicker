@@ -804,7 +804,7 @@
         if (this.mondayFirst) {
           var _c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6;
 
-          this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c + 1));
+          this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c - 1));
 
           for (var i = 0; i < _c; i++) {
             days.push({
@@ -828,7 +828,7 @@
         }
 
         var c = this.utils.getDay(dObj);
-        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c));
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c - 1));
 
         for (var _i = 0; _i < c; _i++) {
           days.push({
