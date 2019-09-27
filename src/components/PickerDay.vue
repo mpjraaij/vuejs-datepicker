@@ -87,7 +87,7 @@ export default {
     isRtl: Boolean,
     mondayFirst: Boolean,
     useUtc: Boolean,
-    count: 0,
+    count: 0
   },
   data () {
     const constructedDateUtils = makeDateUtils(this.useUtc)
@@ -98,10 +98,10 @@ export default {
   computed: {
     dayCount () {
       if (this.count === 7) {
-        this.count = 0;
+        this.count = 0
       }
-      this.count++;
-      return this.count;
+      this.count++
+      return this.count
     },
 
     /**
