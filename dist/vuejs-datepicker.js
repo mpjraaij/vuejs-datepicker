@@ -780,11 +780,14 @@
         var d = this.pageDate;
         var days = [];
         var dObj = this.useUtc ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)) : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes());
+        var daysInMonth = this.utils.daysInMonth(this.utils.getFullYear(dObj), this.utils.getMonth(dObj));
 
         if (this.mondayFirst) {
-          var c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6;
+          var _c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6;
 
-          for (var i = 0; i < c; i++) {
+          this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - _c));
+
+          for (var i = 0; i < _c; i++) {
             days.push({
               date: this.utils.getDate(dObj),
               timestamp: dObj.getTime(),
@@ -804,7 +807,27 @@
           return days;
         }
 
-        return this.utils.getDay(dObj);
+        var c = this.utils.getDay(dObj);
+        this.utils.setDate(dObj, this.utils.getDate(dObj) + (daysInMonth - c));
+
+        for (var _i = 0; _i < c; _i++) {
+          days.push({
+            date: this.utils.getDate(dObj),
+            timestamp: dObj.getTime(),
+            isSelected: this.isSelectedDate(dObj),
+            isDisabled: this.isDisabledDate(dObj),
+            isHighlighted: this.isHighlightedDate(dObj),
+            isHighlightStart: this.isHighlightStart(dObj),
+            isHighlightEnd: this.isHighlightEnd(dObj),
+            isToday: this.utils.compareDates(dObj, new Date()),
+            isWeekend: this.utils.getDay(dObj) === 0 || this.utils.getDay(dObj) === 6,
+            isSaturday: this.utils.getDay(dObj) === 6,
+            isSunday: this.utils.getDay(dObj) === 0
+          });
+          this.utils.setDate(dObj, this.utils.getDate(dObj) + 1);
+        }
+
+        return days;
       },
 
       /**
