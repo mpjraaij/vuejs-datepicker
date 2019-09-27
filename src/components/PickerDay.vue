@@ -254,22 +254,19 @@ export default {
     },
 
     allDays () {
-      let allDays = [ ...this.blankDays, ...this.days ]
+      let allDays = [ ...this.blankDays, ...this.days, ...this.comingDays ]
       let i
       let j
       let chunkedDays = []
+      let fullWeek = []
       let chunk = 7
-
-      console.log([ ...this.blankDays, ...this.days ])
 
       for (i = 0, j = allDays.length; i < j; i += chunk) {
         chunkedDays = allDays.slice(i, i + chunk)
-        console.log(chunkedDays)
+        fullWeek.push(chunkedDays)
       }
 
-      console.log(this.comingDays)
-
-      return 'allDays'
+      return fullWeek
     }
   },
   methods: {
