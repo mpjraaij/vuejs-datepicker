@@ -1186,14 +1186,24 @@
                   [
                     _vm.blankDays > 0
                       ? _vm._l(_vm.blankDays, function(d) {
-                          return _c("span", [
-                            _vm._v(_vm._s(_vm.getCount()) + " b")
+                          return _c("span", { key: d.timestamp }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.getCount()) +
+                                " b\n                "
+                            )
                           ])
                         })
                       : _vm._e(),
                     _vm._v(" "),
                     _vm._l(_vm.days, function(day) {
-                      return _c("span", [_vm._v(_vm._s(_vm.getCount()) + " a")])
+                      return _c("span", { key: day.timestamp }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.getCount()) +
+                            " a\n              "
+                        )
+                      ])
                     })
                   ],
                   2
