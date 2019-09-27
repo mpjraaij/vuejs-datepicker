@@ -1,5 +1,5 @@
 <template>
-  <!-- <div :class="[calendarClass, 'vdp-datepicker__calendar']" v-show="showDayView" :style="calendarStyle" @mousedown.prevent>
+  <div :class="[calendarClass, 'vdp-datepicker__calendar']" v-show="showDayView" :style="calendarStyle" @mousedown.prevent>
     <slot name="beforeCalendarHeader"></slot>
     <header>
       <span
@@ -24,7 +24,7 @@
           v-html="dayCellContent(day)"
           @click="selectDate(day)"></span>
     </div>
-  </div> -->
+  </div>
 </template>
 <script>
 import { makeDateUtils } from '../utils/DateUtils'
