@@ -20,7 +20,7 @@
 					<th
             v-for="d in daysOfWeek"
             :key="d.timestamp">
-            {{ d }}
+            {{ d.charAt(0) }}
           </th>
 				</tr>
       </thead>

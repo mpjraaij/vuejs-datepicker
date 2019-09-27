@@ -1166,7 +1166,7 @@
               "tr",
               _vm._l(_vm.daysOfWeek, function(d) {
                 return _c("th", { key: d.timestamp }, [
-                  _vm._v("\n            " + _vm._s(d) + "\n          ")
+                  _vm._v("\n            " + _vm._s(d.charAt(0)) + "\n          ")
                 ])
               }),
               0
