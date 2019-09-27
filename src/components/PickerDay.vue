@@ -426,7 +426,7 @@ export default {
     dayClasses (day) {
       return {
         'selected': day.isSelected,
-        'available': ! day.isDisabled,
+        'available': !day.isDisabled,
         'off': day.isPreviousMonth || day.isNextMonth,
         'in-range': day.isHighlighted,
         'today': day.isToday,

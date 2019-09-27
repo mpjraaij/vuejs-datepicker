@@ -1158,14 +1158,15 @@
       dayClasses: function dayClasses(day) {
         return {
           'selected': day.isSelected,
-          'disabled': day.isDisabled,
-          'highlighted': day.isHighlighted,
+          'available': !day.isDisabled,
+          'off': day.isPreviousMonth || day.isNextMonth,
+          'in-range': day.isHighlighted,
           'today': day.isToday,
           'weekend': day.isWeekend,
-          'sat': day.isSaturday,
-          'sun': day.isSunday,
-          'highlight-start': day.isHighlightStart,
-          'highlight-end': day.isHighlightEnd
+          'saturday': day.isSaturday,
+          'sunday': day.isSunday,
+          'start-date': day.isHighlightStart,
+          'end-date': day.isHighlightEnd
         };
       },
 
