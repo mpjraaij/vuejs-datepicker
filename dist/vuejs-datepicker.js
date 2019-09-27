@@ -811,6 +811,7 @@
               date: this.utils.getDate(dObj),
               timestamp: dObj.getTime(),
               isPreviousMonth: true,
+              isLastItem: i === _c - 1,
               isSelected: this.isSelectedDate(dObj),
               isDisabled: this.isDisabledDate(dObj),
               isHighlighted: this.isHighlightedDate(dObj),
@@ -1168,8 +1169,8 @@
           'weekend': day.isWeekend,
           'saturday': day.isSaturday,
           'sunday': day.isSunday,
-          'start-date': day.isHighlightStart,
-          'end-date': day.isHighlightEnd
+          'start-date': day.isHighlightStart || day.isNextMonth && day.isFirstItem,
+          'end-date': day.isHighlightEnd || day.isPreviousMonth && day.isLastItem
         };
       },
 
