@@ -28,9 +28,16 @@
             v-for="(d, key) in blankDays"
             v-if="blankDays > 0">
             <template v-if="key === 0">
-              <span>
-                B
-              </span>
+              <div>
+                <span>
+                  B
+                </span>
+            </template>
+            <template v-if="key === blankDays.length - 1">
+                <span>
+                  B
+                </span>
+              </div>
             </template>
             <template v-else>
               <span>
