@@ -24,34 +24,11 @@
           </th>
 				</tr>
         <tbody>
-          <template
-            v-for="(d, key) in blankDays"
-            v-if="blankDays > 0">
-            <template v-if="key === 0">
-              <div>
-                <span>
-                  B
-                </span>
-            </template>
-            <template v-if="key === blankDays.length - 1">
-                <span>
-                  B
-                </span>
-              </div>
-            </template>
-            <template v-else>
-              <span>
-                b
-              </span>
-            </template>
-          </template>
-          <!-- <template v-if="count === 1">
-            <span 
-              v-for="day in days"
-              :key="day.timestamp">
-              {{ getCount() }} a
-            </span>
-          </template> -->
+          <tr>
+            <td>
+              {{ allDays }}
+            </td>
+          </tr>
         </tbody>
       </thead>
     </table>
@@ -100,11 +77,14 @@ export default {
   data () {
     const constructedDateUtils = makeDateUtils(this.useUtc)
     return {
-      utils: constructedDateUtils,
-      count: null
+      utils: constructedDateUtils
     }
   },
   computed: {
+    allDays () {
+      return this.blankDays.concat(this.days)
+    },
+
     /**
      * Returns an array of day names
      * @return {String[]}
@@ -204,13 +184,6 @@ export default {
     }
   },
   methods: {
-    getCount () {
-      if (this.count === null) this.count = this.blankDays.length
-      if (this.count === 7) this.count = 0
-      this.count += 1
-      return this.count
-    },
-
     selectDate (date) {
       if (date.isDisabled) {
         this.$emit('selectedDisabled', date)
