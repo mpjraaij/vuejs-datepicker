@@ -1178,9 +1178,21 @@ var __vue_render__$1 = function() {
           _c(
             "tbody",
             [
-              _vm._l(_vm.blankDays, function(d) {
+              _vm._l(_vm.blankDays, function(d, key) {
                 return _vm.blankDays > 0
-                  ? [_c("span", [_vm._v("\n              b\n            ")])]
+                  ? [
+                      key === 0
+                        ? [
+                            _c("span", [
+                              _vm._v("\n                B\n              ")
+                            ])
+                          ]
+                        : [
+                            _c("span", [
+                              _vm._v("\n                b\n              ")
+                            ])
+                          ]
+                    ]
                   : _vm._e()
               })
             ],
