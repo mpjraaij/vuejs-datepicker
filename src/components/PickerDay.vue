@@ -28,7 +28,19 @@
             <td 
               class="days"
               colspan="7">
-              Bla
+              <template v-if="blankDays > 0">
+                <span 
+                  class="cell day blank" 
+                  v-for="d in blankDays" 
+                  v-html="dayCellContent(d)"
+                  :key="d.timestamp"></span>
+              </template>
+              <span class="cell day"
+                  v-for="day in days"
+                  :key="day.timestamp"
+                  :class="dayClasses(day)"
+                  v-html="dayCellContent(day)"
+                  @click="selectDate(day)"></span>
             </td>
           </tr>
         </tbody>

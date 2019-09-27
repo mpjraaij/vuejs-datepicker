@@ -1166,7 +1166,40 @@ var __vue_render__$1 = function() {
             0
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                { staticClass: "days", attrs: { colspan: "7" } },
+                [
+                  _vm.blankDays > 0
+                    ? _vm._l(_vm.blankDays, function(d) {
+                        return _c("span", {
+                          key: d.timestamp,
+                          staticClass: "cell day blank",
+                          domProps: { innerHTML: _vm._s(_vm.dayCellContent(d)) }
+                        })
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.days, function(day) {
+                    return _c("span", {
+                      key: day.timestamp,
+                      staticClass: "cell day",
+                      class: _vm.dayClasses(day),
+                      domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                      on: {
+                        click: function($event) {
+                          return _vm.selectDate(day)
+                        }
+                      }
+                    })
+                  })
+                ],
+                2
+              )
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -1206,20 +1239,7 @@ var __vue_render__$1 = function() {
     2
   )
 };
-var __vue_staticRenderFns__$1 = [
-  function() {
-    var _vm = this;
-    var _h = _vm.$createElement;
-    var _c = _vm._self._c || _h;
-    return _c("tbody", [
-      _c("tr", [
-        _c("td", { attrs: { colspan: "7" } }, [
-          _vm._v("\n              Bla\n            ")
-        ])
-      ])
-    ])
-  }
-];
+var __vue_staticRenderFns__$1 = [];
 __vue_render__$1._withStripped = true;
 
   /* style */
