@@ -846,6 +846,11 @@ var script$1 = {
 
       return days;
     },
+    comingDays: function comingDays() {
+      var dayCount = this.blankDays.length + this.days.length;
+      var leftOver = 35 % dayCount;
+      return leftOver;
+    },
 
     /**
      * @return {Object[]}
@@ -931,6 +936,7 @@ var script$1 = {
         console.log(chunkedDays);
       }
 
+      console.log(this.comingDays);
       return 'allDays';
     }
   },

@@ -153,7 +153,9 @@ export default {
     },
     comingDays () {
       let dayCount = this.blankDays.length + this.days.length
-      return dayCount
+      let leftOver = 35 % dayCount
+
+      return leftOver
     },
     /**
      * @return {Object[]}
@@ -239,6 +241,8 @@ export default {
         chunkedDays = allDays.slice(i, i + chunk)
         console.log(chunkedDays)
       }
+
+      console.log(this.comingDays)
 
       return 'allDays'
     }
