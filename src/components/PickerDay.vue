@@ -24,40 +24,20 @@
           </th>
 				</tr>
         <tbody>
-          <tr>
-            <td colspan="7">
-              <template v-if="blankDays > 0">
-                <span 
-                  v-for="d in blankDays"
-                  :key="d.timestamp">
-                  {{ getCount() }} b
-                </span>
-              </template>
-              <span 
-                v-for="day in days"
-                :key="day.timestamp">
-                {{ getCount() }} a
-              </span>
-            </td>
-          </tr>
-          <!-- <tr>
-            <td 
-              class="days"
-              colspan="7">
-              <template v-if="blankDays > 0">
-                <span 
-                  class="cell day blank" 
-                  v-for="d in blankDays" 
-                  :key="d.timestamp"></span>
-              </template>
-              <span class="cell day"
-                  v-for="day in days"
-                  :key="day.timestamp"
-                  :class="dayClasses(day)"
-                  v-html="dayCellContent(day)"
-                  @click="selectDate(day)">a</span>
-            </td>
-          </tr> -->
+          <template
+            v-for="d in blankDays"
+            v-if="blankDays > 0">
+            <span>
+              b
+            </span>
+          </template>
+          <!-- <template v-if="count === 1">
+            <span 
+              v-for="day in days"
+              :key="day.timestamp">
+              {{ getCount() }} a
+            </span>
+          </template> -->
         </tbody>
       </thead>
     </table>
@@ -107,7 +87,7 @@ export default {
     const constructedDateUtils = makeDateUtils(this.useUtc)
     return {
       utils: constructedDateUtils,
-      count: 0
+      count: null
     }
   },
   computed: {
@@ -211,6 +191,7 @@ export default {
   },
   methods: {
     getCount () {
+      if (this.count === null) this.count = this.blankDays.length
       if (this.count === 7) this.count = 0
       this.count += 1
       return this.count

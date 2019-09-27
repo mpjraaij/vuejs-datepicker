@@ -748,7 +748,7 @@ var script$1 = {
     var constructedDateUtils = makeDateUtils(this.useUtc);
     return {
       utils: constructedDateUtils,
-      count: 0
+      count: null
     };
   },
   computed: {
@@ -856,6 +856,7 @@ var script$1 = {
   },
   methods: {
     getCount: function getCount() {
+      if (this.count === null) this.count = this.blankDays.length;
       if (this.count === 7) this.count = 0;
       this.count += 1;
       return this.count;
@@ -1172,38 +1173,17 @@ var __vue_render__$1 = function() {
             0
           ),
           _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c(
-                "td",
-                { attrs: { colspan: "7" } },
-                [
-                  _vm.blankDays > 0
-                    ? _vm._l(_vm.blankDays, function(d) {
-                        return _c("span", { key: d.timestamp }, [
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(_vm.getCount()) +
-                              " b\n                "
-                          )
-                        ])
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._l(_vm.days, function(day) {
-                    return _c("span", { key: day.timestamp }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.getCount()) +
-                          " a\n              "
-                      )
-                    ])
-                  })
-                ],
-                2
-              )
-            ])
-          ])
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.blankDays, function(d) {
+                return _vm.blankDays > 0
+                  ? [_c("span", [_vm._v("\n              b\n            ")])]
+                  : _vm._e()
+              })
+            ],
+            2
+          )
         ])
       ]),
       _vm._v(" "),
