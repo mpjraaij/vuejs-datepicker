@@ -151,6 +151,10 @@ export default {
       }
       return days
     },
+    comingDays () {
+      let dayCount = this.blankDays.length + this.days.length
+      return dayCount
+    },
     /**
      * @return {Object[]}
      */
