@@ -752,7 +752,17 @@ var script$1 = {
   },
   computed: {
     allDays: function allDays() {
-      return this.blankDays.concat(this.days);
+      var allDays = this.blankDays.concat(this.days);
+      var i;
+      var j;
+      var tmp;
+      var chunk = 7;
+
+      for (i = 0, j = allDays.length; i < j; i += chunk) {
+        tmp = allDays.slice(i, i + chunk);
+      }
+
+      return tmp;
     },
 
     /**
