@@ -1170,39 +1170,44 @@
                 ])
               }),
               0
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { class: _vm.isRtl ? "flex-rtl" : "" },
-          [
-            _vm.blankDays > 0
-              ? _vm._l(_vm.blankDays, function(d) {
-                  return _c("span", {
-                    key: d.timestamp,
-                    staticClass: "cell day blank"
-                  })
-                })
-              : _vm._e(),
+            ),
             _vm._v(" "),
-            _vm._l(_vm.days, function(day) {
-              return _c("span", {
-                key: day.timestamp,
-                staticClass: "cell day",
-                class: _vm.dayClasses(day),
-                domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
-                on: {
-                  click: function($event) {
-                    return _vm.selectDate(day)
-                  }
-                }
-              })
-            })
-          ],
-          2
-        )
+            _c("tbody", [
+              _c(
+                "tr",
+                { staticClass: "days" },
+                [
+                  _vm.blankDays > 0
+                    ? _vm._l(_vm.blankDays, function(d) {
+                        return _c("span", {
+                          key: d.timestamp,
+                          staticClass: "off in-range available",
+                          domProps: {
+                            innerHTML: _vm._s(_vm.dayCellContent(_vm.day))
+                          }
+                        })
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.days, function(day) {
+                    return _c("span", {
+                      key: day.timestamp,
+                      staticClass: "available",
+                      class: _vm.dayClasses(day),
+                      domProps: { innerHTML: _vm._s(_vm.dayCellContent(day)) },
+                      on: {
+                        click: function($event) {
+                          return _vm.selectDate(day)
+                        }
+                      }
+                    })
+                  })
+                ],
+                2
+              )
+            ])
+          ])
+        ])
       ],
       2
     )

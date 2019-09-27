@@ -23,19 +23,25 @@
             {{ d.charAt(0) }}
           </th>
 				</tr>
+        <tbody>
+          <tr class="days">
+            <template v-if="blankDays > 0">
+              <span 
+                class="off in-range available" 
+                v-for="d in blankDays" 
+                v-html="dayCellContent(day)"
+                :key="d.timestamp"></span>
+            </template>
+              <span class="available"
+              v-for="day in days"
+              :key="day.timestamp"
+              :class="dayClasses(day)"
+              v-html="dayCellContent(day)"
+              @click="selectDate(day)"></span>
+          </tr>
+        </tbody>
       </thead>
     </table>
-    <div :class="isRtl ? 'flex-rtl' : ''">
-      <template v-if="blankDays > 0">
-        <span class="cell day blank" v-for="d in blankDays" :key="d.timestamp"></span>
-      </template>
-      <span class="cell day"
-          v-for="day in days"
-          :key="day.timestamp"
-          :class="dayClasses(day)"
-          v-html="dayCellContent(day)"
-          @click="selectDate(day)"></span>
-    </div>
   </div>
 </template>
 <script>
