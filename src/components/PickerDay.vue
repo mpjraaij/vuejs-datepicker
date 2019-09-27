@@ -100,11 +100,28 @@ export default {
      */
     blankDays () {
       const d = this.pageDate
+      let days = []
       let dObj = this.useUtc
         ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1))
         : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes())
       if (this.mondayFirst) {
-        return this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6
+        let c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6
+        for (let i = 0; i < c; i++) {
+          days.push({
+            date: this.utils.getDate(dObj),
+            timestamp: dObj.getTime(),
+            isSelected: this.isSelectedDate(dObj),
+            isDisabled: this.isDisabledDate(dObj),
+            isHighlighted: this.isHighlightedDate(dObj),
+            isHighlightStart: this.isHighlightStart(dObj),
+            isHighlightEnd: this.isHighlightEnd(dObj),
+            isToday: this.utils.compareDates(dObj, new Date()),
+            isWeekend: this.utils.getDay(dObj) === 0 || this.utils.getDay(dObj) === 6,
+            isSaturday: this.utils.getDay(dObj) === 6,
+            isSunday: this.utils.getDay(dObj) === 0
+          })
+          return days
+        }
       }
       return this.utils.getDay(dObj)
     },
@@ -182,6 +199,9 @@ export default {
     allDays () {
       console.log(this.blankDays)
       console.log(this.days)
+
+      // console.log({ ...this.blankDays, ...this.days })
+
       return 'allDays'
     }
   },
