@@ -798,8 +798,10 @@
               isSaturday: this.utils.getDay(dObj) === 6,
               isSunday: this.utils.getDay(dObj) === 0
             });
-            return days;
+            this.utils.setDate(dObj, this.utils.getDate(dObj) + 1);
           }
+
+          return days;
         }
 
         return this.utils.getDay(dObj);

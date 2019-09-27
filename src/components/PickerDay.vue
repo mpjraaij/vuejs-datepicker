@@ -106,6 +106,7 @@ export default {
         : new Date(d.getFullYear(), d.getMonth(), 1, d.getHours(), d.getMinutes())
       if (this.mondayFirst) {
         let c = this.utils.getDay(dObj) > 0 ? this.utils.getDay(dObj) - 1 : 6
+
         for (let i = 0; i < c; i++) {
           days.push({
             date: this.utils.getDate(dObj),
@@ -120,8 +121,10 @@ export default {
             isSaturday: this.utils.getDay(dObj) === 6,
             isSunday: this.utils.getDay(dObj) === 0
           })
-          return days
+          this.utils.setDate(dObj, this.utils.getDate(dObj) + 1)
         }
+
+        return days
       }
       return this.utils.getDay(dObj)
     },
