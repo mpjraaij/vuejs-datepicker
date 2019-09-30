@@ -5,7 +5,7 @@
         <strong>From</strong>
         <span v-if="highlighted.from">
           {{ parseDateToShow(highlighted.from) }}
-          <a href="#">x</a>
+          <a href="#" @click="highlighted.from === null">x</a>
         </span>
         <span v-else>
           Flexible
@@ -15,7 +15,7 @@
         <strong>To</strong>
         <span v-if="highlighted.to">
           {{ parseDateToShow(highlighted.to) }}
-          <a href="#">x</a>
+          <a href="#" @click="highlighted.to === null">x</a>
         </span>
         <span v-else>
           Flexible
