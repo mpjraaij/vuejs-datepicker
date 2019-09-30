@@ -55,11 +55,21 @@
     <div class="header">
       <div class="header-section">
         <strong>From</strong>
-        <span>Flexible</span>
+        <span v-if="highlighted.from">
+          {{ highlighted.from }}
+        </span>
+        <span v-else>
+          Flexible
+        </span>
       </div>
       <div class="header-section">
         <strong>To</strong>
-        <span>Flexible</span>
+        <span v-if="highlighted.to">
+          {{ highlighted.to }}
+        </span>
+        <span v-else>
+          Flexible
+        </span>
       </div>
     </div>
     <div class="drp-calendar">
