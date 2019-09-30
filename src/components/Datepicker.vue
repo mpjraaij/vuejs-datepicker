@@ -94,7 +94,7 @@
 
       <!-- Day View -->
 
-      {{ selectedDate }}
+      {{ highlighted }}
 
       <picker-day
         v-if="allowedToShowView('day')"
