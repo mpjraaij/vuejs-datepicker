@@ -1158,6 +1158,7 @@ var script$1 = {
         'available': true,
         'active': day.isSelected,
         'disabled': day.isDisabled,
+        'selected': day.isHighlighted || day.isHighlightStart || day.isHighlightEnd,
         'off': day.isPreviousMonth || day.isNextMonth,
         'in-range': day.isPreviousMonth && !day.isLastItem || day.isNextMonth && !day.isFirstItem || day.isHighlighted && !day.isHighlightStart && !day.isHighlightEnd,
         'today': day.isToday,
