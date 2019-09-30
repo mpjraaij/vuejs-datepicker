@@ -7,7 +7,7 @@
           <span class="header-section__date" @click="$emit('change', 'from')">{{ parseDateToShow(highlighted.from) }}</span>
           <a class="header-section__clear" href="#" @click="$emit('clear', 'from')"></a>
         </span>
-        <span v-else>
+        <span class="header-section__date" @click="$emit('change', 'from')" v-else>
           Flexible
         </span>
       </div>
@@ -17,7 +17,7 @@
           <span class="header-section__date" @click="$emit('change', 'to')">{{ parseDateToShow(highlighted.to) }}</span>
           <a class="header-section__clear" href="#" @click="$emit('clear', 'to')"></a>
         </span>
-        <span v-else>
+        <span class="header-section__date" @click="$emit('change', 'to')" v-else>
           Flexible
         </span>
       </div>
