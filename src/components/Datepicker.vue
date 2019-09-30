@@ -56,7 +56,7 @@
       <div class="header-section">
         <strong>From</strong>
         <span v-if="highlighted.from">
-          {{ highlighted.from }}
+          {{ parseDateToShow(highlighted.from) }}
         </span>
         <span v-else>
           Flexible
@@ -65,7 +65,7 @@
       <div class="header-section">
         <strong>To</strong>
         <span v-if="highlighted.to">
-          {{ highlighted.to }}
+          {{ parseDateToShow(highlighted.to) }}
         </span>
         <span v-else>
           Flexible
@@ -530,6 +530,12 @@ export default {
       if (this.isInline) {
         this.setInitialView()
       }
+    },
+    parseDateToShow (date) {
+      return date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
+    },
+    parseDateToSend (date) {
+      return date.getFullYear() + '-' + (('0' + (date.getMonth() + 1)).slice(-2)) + '-' + (('0' + date.getDate()).slice(-2))
     }
   },
   mounted () {
