@@ -5,7 +5,7 @@
         <strong>From</strong>
         <span v-if="highlighted.from">
           <span class="header-section__date" @click="$emit('change', 'from')">{{ parseDateToShow(highlighted.from) }}</span>
-          <a href="#" @click="$emit('clear', 'from')">x</a>
+          <a class="header-section__clear" href="#" @click="$emit('clear', 'from')">x</a>
         </span>
         <span v-else>
           Flexible
@@ -15,7 +15,7 @@
         <strong>To</strong>
         <span v-if="highlighted.to">
           <span class="header-section__date" @click="$emit('change', 'to')">{{ parseDateToShow(highlighted.to) }}</span>
-          <a href="#" @click="$emit('clear', 'to')">x</a>
+          <a class="header-section__clear" href="#" @click="$emit('clear', 'to')">x</a>
         </span>
         <span v-else>
           Flexible
