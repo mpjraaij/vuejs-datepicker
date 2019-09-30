@@ -148,7 +148,8 @@ export default {
         ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1))
         : new Date(d.getFullYear(), d.getMonth() + 1, 1, d.getHours(), d.getMinutes())
       let dayCount = this.blankDays.length + this.days.length
-      let leftOver = 35 % dayCount
+      let totalDays = dayCount > 35 ? 42 : 35
+      let leftOver = totalDays % dayCount
 
       this.utils.setDate(dObj, this.utils.getDate(dObj))
 

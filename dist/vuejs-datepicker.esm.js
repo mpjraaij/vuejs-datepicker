@@ -851,7 +851,8 @@ var script$1 = {
       var days = [];
       var dObj = this.useUtc ? new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1)) : new Date(d.getFullYear(), d.getMonth() + 1, 1, d.getHours(), d.getMinutes());
       var dayCount = this.blankDays.length + this.days.length;
-      var leftOver = 35 % dayCount;
+      var totalDays = dayCount > 35 ? 42 : 35;
+      var leftOver = totalDays % dayCount;
       this.utils.setDate(dObj, this.utils.getDate(dObj));
 
       for (var i = 0; i < leftOver; i++) {
