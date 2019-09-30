@@ -1170,8 +1170,8 @@
           'weekend': day.isWeekend,
           'saturday': day.isSaturday,
           'sunday': day.isSunday,
-          'start-date': day.isHighlightStart || day.isNextMonth && day.isFirstItem,
-          'end-date': day.isHighlightEnd || day.isPreviousMonth && day.isLastItem
+          'start-date': day.isHighlightStart || day.isNextMonth && day.isFirstItem && !day.isHighlighted,
+          'end-date': day.isHighlightEnd || day.isPreviousMonth && day.isLastItem && !day.isHighlighted
         };
       },
 
