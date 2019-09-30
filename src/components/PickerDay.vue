@@ -433,14 +433,13 @@ export default {
         'active': day.isSelected,
         'disabled': day.isDisabled,
         'off': day.isPreviousMonth || day.isNextMonth,
-        'next': day.isNextMonth,
         'in-range': (day.isPreviousMonth && !day.isLastItem) || (day.isNextMonth && !day.isFirstItem) || (day.isHighlighted && !day.isHighlightStart && !day.isHighlightEnd),
         'today': day.isToday,
         'weekend': day.isWeekend,
         'saturday': day.isSaturday,
         'sunday': day.isSunday,
-        'start-date': day.isHighlightStart || (day.isNextMonth && day.isFirstItem && !day.isHighlighted),
-        'end-date': day.isHighlightEnd || (day.isPreviousMonth && day.isLastItem && !day.isHighlighted)
+        'start-date': day.isHighlightStart || (day.isNextMonth && day.isFirstItem),
+        'end-date': day.isHighlightEnd || (day.isPreviousMonth && day.isLastItem)
       }
     },
     /**
