@@ -864,7 +864,7 @@ var script$1 = {
           isNextMonth: true,
           isFirstItem: i === 0,
           isSelected: this.isSelectedDate(dObj),
-          isDisabled: this.isDisabledDate(dObj),
+          isDisabled: true,
           isHighlighted: this.isHighlightedDate(dObj),
           isHighlightStart: this.isHighlightStart(dObj),
           isHighlightEnd: this.isHighlightEnd(dObj),
