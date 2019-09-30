@@ -1164,7 +1164,7 @@
           'available': true,
           'active': day.isSelected,
           'disabled': day.isDisabled,
-          'off': day.isPreviousMonth,
+          'off': day.isPreviousMonth || day.isNextMonth,
           'next': day.isNextMonth,
           'in-range': day.isPreviousMonth && !day.isLastItem || day.isNextMonth && !day.isFirstItem || day.isHighlighted && !day.isHighlightStart && !day.isHighlightEnd,
           'today': day.isToday,
