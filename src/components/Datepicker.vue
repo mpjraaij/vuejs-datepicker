@@ -93,6 +93,9 @@
       </date-input> -->
 
       <!-- Day View -->
+
+      {{ selectedDate }}
+
       <picker-day
         v-if="allowedToShowView('day')"
         :pageDate="pageDate"

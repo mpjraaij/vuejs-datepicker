@@ -105,7 +105,7 @@ export default {
             isPreviousMonth: true,
             isLastItem: i === c - 1,
             isSelected: this.isSelectedDate(dObj),
-            isDisabled: this.isDisabledDate(dObj),
+            isDisabled: true,
             isHighlighted: this.isHighlightedDate(dObj),
             isHighlightStart: this.isHighlightStart(dObj),
             isHighlightEnd: this.isHighlightEnd(dObj),
