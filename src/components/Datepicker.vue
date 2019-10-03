@@ -60,6 +60,7 @@ import PickerDay from './PickerDay.vue'
 import PickerMonth from './PickerMonth.vue'
 import PickerYear from './PickerYear.vue'
 import utils, { makeDateUtils } from '../utils/DateUtils'
+import format from 'date-fns'
 export default {
   components: {
     DateInput,
@@ -413,7 +414,8 @@ export default {
       }
     },
     parseDateToShow (date) {
-      return date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
+      return format(date, 'dd-MM-yyyy')
+      // return date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
     },
     parseDateToSend (date) {
       return date.getFullYear() + '-' + (('0' + (date.getMonth() + 1)).slice(-2)) + '-' + (('0' + date.getDate()).slice(-2))

@@ -35,7 +35,9 @@
   "pre-commit": [
     "lint"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "date-fns": "^2.4.1"
+  },
   "peerDependencies": {
     "vue": "^2.6.10"
   },
