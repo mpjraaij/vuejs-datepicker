@@ -414,7 +414,7 @@ export default {
       }
     },
     parseDateToShow (date) {
-      return format(date, 'dd-MM-yyyy')
+      return format(date, this.format)
       // return date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
     },
     parseDateToSend (date) {
